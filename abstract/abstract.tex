@@ -7,12 +7,15 @@
 ]{scrlayer-scrpage}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage[backend=bibtex]{biblatex}
+%\bibliographystyle{ieeetr}
+\bibliography{citations.bib} 
 
 \KOMAoptions{
 	headsepline = true
 }
 \ihead{Tilman Hinnerichs}
-\ohead{Maximization of Mutual Information for Information Clustering}
+\ohead{Maximization of Mutual Information for Invariant Information Clustering}
 \cfoot*{\pagemark}
 %opening
 \title{Summary on the topic of Maximization of Mutual Information for Information Clustering}
@@ -68,13 +71,29 @@
 
 \begin{document}
 	
-	\title{ \normalsize \textsc{MPI: MiS}
-		\\ [0.5cm]
+	\title{ \normalsize
 		\HRule{0.5pt} \\
-		\LARGE \textbf{\uppercase{A Pivoting Algorithm for Convec Hulls and Vertex Enumeration of Arrangements and Polyhedra}}
+		\LARGE \textbf{\uppercase{A Pivoting Algorithm for Convex Hulls and Vertex Enumeration of Arrangements and Polyhedra}}
 		\HRule{0.5pt} \\ [0.5cm]
 		\normalsize }
 
 \maketitle
+\begin{abstract}
+	In this paper the authors present a novel approach to vertex enumeration of various arrangements. Concerning especially convex arrangements of hyperplanes and thus convex polyhedra of the form $P=\{x\in \mathbb{R}^d: Ax\leq b\}$, this algorithm can be utilized for enumeration of the facets of those very polyhedra with minor adjustments, too.\\
+		
+	The vertex enumeration problem itself has shown its importance in the fields of computational geometry and theoretical computer science, respectively. However, it also demonstrated its gravity in more applied regions fo research such as computational biology \cite{compBio}\cite{Acuna2012}\cite{Gagneur2004}, quantum physics \cite{BellEqu}, and others.\\
+	
+	Hereby, (1) deterministic enumeration over each polyhedron for reproducibility, (2) completion within polynomial  time and space, and (3) non-repetitiveness and thus uniqueness of each vertex in the list of vertices, represent the pitfalls for novel methods. While the enumeration of vertices for general (unbounded) polyhedra is NP-complete\cite{Khachiyan2008}, for non-degenerate polyhedra this can be solved within polynomial time and space. The algorithm presented in this very paper, was the first to actually achieve this goal, and has hence build the foundation for various research projects. Additionally, it has many remarkable properties and was the beginning of efficient reverse search techniques, and therefore got adapted for the general framework and other problems in operations research, combinatorics and geometry\cite{Avis1996}.\\
+	
+	In general there are two classes for computing the vertices of a convex polyhedron. These are either based on various pivot methods, or grounded in the \glqq double description\grqq{} first described by Motzkin\cite{Motzkin} in 1953.\\
+	
+	Albeit the uprise of methods of the latter family, the approach presented in this paper is pivot-based, and thus based on the \textsc{Simplex}-algorithm. This algorithm calculates solutions to non-discrete, linear optimization problems by iteration over the vertices of the underlying convex polyhedron, that represents the feasible search space. However, it can only progress in direction of the gradient, defined by a goal function. The authors present a method to revert those steps utilizing the \glqq Criss-cross algorithm\grqq{} and \glqq Bland's rule\grqq{} that alter the update rule of the \textsc{Simplex}-algorithm. Latter guarantees a unique path for each starting vertex to the optimum vertex and also solves the issue of generated cycles caused by some pivot rules. Combining all those paths starting from each vertex, a spanning tree of vertices with root in the optimal vertex is built. This solves the uniqueness issue for the nodes in the eventual enumeration, obtained from e.g. a breadth first search among this tree.\\
+	
+	Starting from that spanning tree, perils lies within determinism of the selection of the branches. This can be solved by the very nature of the \textsc{Simplex}-algorithm as every node is described by a set of basis and non-basis indices, that express the state of the corresponding equation system. These sets of indices are exploited for the construction of a lexicographic order among the nodes.\\
+	
+	Eventually this approach captures many interesting properties, that justify the historic impact and the brought improvement of this work. First, no additional storage is needed in order to run this algorithm, and additionally implicitly handles the degenerate cases of vertices that many methods struggled with. Eventually, the algorithm can be parallelized efficiently, founded in its tree searching nature.
 
+\end{abstract}
+
+\printbibliography
 \end{document}

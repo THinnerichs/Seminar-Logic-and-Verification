@@ -1,0 +1,307 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{Acuna2012}{article}{}
+    \name{author}{6}{}{%
+      {{hash=AV}{%
+         family={Acuna},
+         familyi={A\bibinitperiod},
+         given={V.},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=MPV}{%
+         family={Milreu},
+         familyi={M\bibinitperiod},
+         given={P.\bibnamedelima V.},
+         giveni={P\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=CL}{%
+         family={Cottret},
+         familyi={C\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=MSA}{%
+         family={Marchetti-Spaccamela},
+         familyi={M\bibinithyphendelim S\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SL}{%
+         family={Stougie},
+         familyi={S\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=SMF}{%
+         family={Sagot},
+         familyi={S\bibinitperiod},
+         given={M.-F.},
+         giveni={M\bibinithyphendelim F\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Oxford University Press ({OUP})}%
+    }
+    \strng{namehash}{AV+1}
+    \strng{fullhash}{AVMPVCLMSASLSMF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1093/bioinformatics/bts423
+    \endverb
+    \field{number}{19}
+    \field{pages}{2474\bibrangedash 2483}
+    \field{title}{Algorithms and complexity of enumerating minimal precursor
+  sets in genome-wide metabolic networks}
+    \verb{url}
+    \verb https://doi.org/10.1093/bioinformatics/bts423
+    \endverb
+    \field{volume}{28}
+    \field{journaltitle}{Bioinformatics}
+    \field{month}{07}
+    \field{year}{2012}
+  \endentry
+
+  \entry{Avis1996}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AD}{%
+         family={Avis},
+         familyi={A\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=FK}{%
+         family={Fukuda},
+         familyi={F\bibinitperiod},
+         given={Komei},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier {BV}}%
+    }
+    \strng{namehash}{ADFK1}
+    \strng{fullhash}{ADFK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1016/0166-218x(95)00026-n
+    \endverb
+    \field{number}{1-3}
+    \field{pages}{21\bibrangedash 46}
+    \field{title}{Reverse search for enumeration}
+    \verb{url}
+    \verb https://doi.org/10.1016/0166-218x(95)00026-n
+    \endverb
+    \field{volume}{65}
+    \field{journaltitle}{Discrete Applied Mathematics}
+    \field{month}{03}
+    \field{year}{1996}
+  \endentry
+
+  \entry{Gagneur2004}{article}{}
+    \name{author}{2}{}{%
+      {{hash=GJ}{%
+         family={Gagneur},
+         familyi={G\bibinitperiod},
+         given={Julien},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=KS}{%
+         family={Klamt},
+         familyi={K\bibinitperiod},
+         given={Steffen},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {Springer Science}%
+      {Business Media {LLC}}%
+    }
+    \strng{namehash}{GJKS1}
+    \strng{fullhash}{GJKS1}
+    \field{labelnamesource}{author}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \verb{doi}
+    \verb 10.1186/1471-2105-5-175
+    \endverb
+    \field{number}{1}
+    \field{pages}{175}
+    \verb{url}
+    \verb https://doi.org/10.1186/1471-2105-5-175
+    \endverb
+    \field{volume}{5}
+    \field{journaltitle}{{BMC} Bioinformatics}
+    \field{year}{2004}
+  \endentry
+
+  \entry{Khachiyan2008}{article}{}
+    \name{author}{5}{}{%
+      {{hash=KL}{%
+         family={Khachiyan},
+         familyi={K\bibinitperiod},
+         given={Leonid},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=BE}{%
+         family={Boros},
+         familyi={B\bibinitperiod},
+         given={Endre},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=BK}{%
+         family={Borys},
+         familyi={B\bibinitperiod},
+         given={Konrad},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=EK}{%
+         family={Elbassioni},
+         familyi={E\bibinitperiod},
+         given={Khaled},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=GV}{%
+         family={Gurvich},
+         familyi={G\bibinitperiod},
+         given={Vladimir},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {Springer Science}%
+      {Business Media {LLC}}%
+    }
+    \strng{namehash}{KL+1}
+    \strng{fullhash}{KLBEBKEKGV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{doi}
+    \verb 10.1007/s00454-008-9050-5
+    \endverb
+    \field{number}{1-3}
+    \field{pages}{174\bibrangedash 190}
+    \field{title}{Generating All Vertices of a Polyhedron Is Hard}
+    \verb{url}
+    \verb https://doi.org/10.1007/s00454-008-9050-5
+    \endverb
+    \field{volume}{39}
+    \field{journaltitle}{Discrete {\&} Computational Geometry}
+    \field{month}{03}
+    \field{year}{2008}
+  \endentry
+
+  \entry{Motzkin}{article}{}
+    \name{author}{1}{}{%
+      {{hash=MTS}{%
+         family={MOTZKIN},
+         familyi={M\bibinitperiod},
+         given={T.\bibnamedelima S.},
+         giveni={T\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Princeton University Press}%
+    }
+    \strng{namehash}{MTS1}
+    \strng{fullhash}{MTS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{The Double Description Method, in Contributions to the Theory
+  of Games II}
+    \verb{url}
+    \verb https://ci.nii.ac.jp/naid/10003824991/en/
+    \endverb
+    \field{volume}{28}
+    \field{journaltitle}{Annals of Mathematics Study}
+    \field{year}{1953}
+  \endentry
+
+  \entry{compBio}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SS}{%
+         family={Schuster},
+         familyi={S\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HC}{%
+         family={Hilgetag},
+         familyi={H\bibinitperiod},
+         given={Claus},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SSHC1}
+    \strng{fullhash}{SSHC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{doi}
+    \verb 10.1142/S0218339094000131
+    \endverb
+    \field{pages}{165\bibrangedash 182}
+    \field{title}{Schuster, S. \& Hilgetag, C. On elementary flux modes in
+  biochemical reaction systems at steady state. J. Biol. Syst. 2, 165-182}
+    \field{volume}{2}
+    \field{journaltitle}{J. Biol. Syst}
+    \field{month}{06}
+    \field{year}{1994}
+  \endentry
+
+  \entry{BellEqu}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=WRF}{%
+         family={Werner},
+         familyi={W\bibinitperiod},
+         given={Reinhard\bibnamedelima F.},
+         giveni={R\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=WMM}{%
+         family={Wolf},
+         familyi={W\bibinitperiod},
+         given={Michael\bibnamedelima M.},
+         giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WRFWMM1}
+    \strng{fullhash}{WRFWMM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \verb{eprint}
+    \verb arXiv:quant-ph/0107093
+    \endverb
+    \field{title}{Bell inequalities and Entanglement}
+    \field{year}{2001}
+  \endentry
+\enddatalist
+\endinput
