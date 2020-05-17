@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.12)  14 MAY 2020 09:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.12)  17 MAY 2020 13:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -934,12 +934,6 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 81.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (6.19173pt too wide) in paragraph at lines 82--83
-[]\OT1/cmr/m/n/9 In this paper the authors present a novel approach to vertex e
-numeration of various arrangements.
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 82--83
 
  []
@@ -964,14 +958,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
 
+[1
 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
 
-[1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 Overfull \hbox (4.62334pt too wide) in paragraph at lines 99--99
 []\OT1/cmr/m/n/10 David Avis and Komei Fukuda. ``Reverse search for enumeration
 ''. In: \OT1/cmr/m/it/10 Discrete Applied Mathematics
@@ -997,7 +991,7 @@ Here is how much of TeX's memory you used:
  31617 multiletter control sequences out of 15000+600000
  543215 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 52i,19n,73p,1077b,1245s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 52i,20n,73p,1072b,1245s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/publi
@@ -1009,7 +1003,7 @@ blic/amsfonts/cm/cmsl10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><
 /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on abstract.pdf (2 pages, 157626 bytes).
+Output written on abstract.pdf (2 pages, 158175 bytes).
 PDF statistics:
  101 PDF objects out of 1000 (max. 8388607)
  83 compressed objects within 1 object stream
