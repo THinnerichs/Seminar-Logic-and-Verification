@@ -1,0 +1,350 @@
+\documentclass[10pt]{beamer}
+
+%packages
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,tabu}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
+\usetikzlibrary{fit,shapes}
+\usetikzlibrary{calc,shadings}
+\usepackage{pgfplots}
+\usepackage{colortbl}
+\usepackage{eurosym}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{tabularx}
+
+\usepackage[style=mla]{biblatex}
+
+
+%definitions
+\usepackage{algorithm,algorithmic}
+
+%theme
+\usetheme{Dresden}
+\usecolortheme{rose}
+\useoutertheme{tree}
+
+%environments
+\newenvironment{ExampleGer}{\begin{exampleblock}{Example}}{\end{exampleblock}}
+
+\newenvironment{customlegend}[1][]{%
+	\begingroup
+	% inits/clears the lists (which might be populated from previous
+	% axes):
+	\csname pgfplots@init@cleared@structures\endcsname
+	\pgfplotsset{#1}%
+}{%
+	% draws the legend:
+	\csname pgfplots@createlegend\endcsname
+	\endgroup
+}%
+
+%definitions
+\def\addlegendimage{\csname pgfplots@addlegendimage\endcsname}
+% definition to insert numbers
+\pgfkeys{/pgfplots/number in legend/.style={%
+		/pgfplots/legend image code/.code={%
+			\node at (0.295,-0.0225){#1};
+		},%
+	},
+}
+
+%general
+\title{A Simplex based approach to Vertex Enumeration of Arrangements and Polyhedra}
+\author{Tilman Hinnerichs}
+\institute{Seminar \glqq Selected Topics in Logic and Verification\grqq{} -- TU Dresden}
+\date{July 27, 2020}
+
+%presentation
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+	\insertshorttitle\hspace{4.5cm}%
+	\insertframenumber\,/\,\inserttotalframenumber
+}
+
+\definecolor{myblue}{RGB}{80,80,160}
+\definecolor{mygreen}{RGB}{80,160,80}
+\definecolor{myturk}{RGB}{240,60,60}
+
+\begin{document}
+	
+\begin{frame}{}
+	\titlepage
+\end{frame}
+
+\section{The Vertex Enumeration Problem}
+\begin{frame}{The paper}
+	\textbf{\large{\glqq A Pivoting Algorithm for Convex Hulls and Vertex Enumeration of Arrangements and Polyhedra\grqq{}}}\\
+	\vspace{0.5cm}
+	Authors: David Avis and Komei Fukuda\\
+	Publication year: 1992\\
+	Journal: Discrete \& Computational Geometry\\
+	\pause 
+	\textbf{Cited 751 times} (according to Google Scholar)
+	
+\end{frame}
+
+\begin{frame}{Outline}
+	\setbeamertemplate{section in toc}[sections numbered]
+	\tableofcontents
+\end{frame}
+
+
+\begin{frame}{The Vertex Enumeration Problem}
+	\begin{definition}[Convex Polyhedron]
+		Given a matrix $A=(a_{ij}) \in \mathbb{R}^{m\times n}$ and a vector $b \in \mathbb{R}^m$.\\
+		
+		A \textit{convex polyhedron} $P$ is defined as
+		\begin{equation}
+			P = \{ x\in \mathbb{R}^n: Ax+b\geq 0 \}
+		\end{equation}
+	\end{definition}
+	\pause 
+	\begin{definition}[Polyhedron Vertex]
+		A point $x\in P$ is a \textit{vertex} of $P$ \textbf{iff}\\
+		it cannot be written as a convex combination of two other solutions \textbf{iff}\\
+		it is the unique solution to a subset of $m$ inequalities solved as equations. 
+	\end{definition}
+	
+\end{frame}
+
+\begin{frame}{The Vertex Enumeration Problem (VEP)}
+	\begin{definition}[Vertex Enumeration Problem]
+		For a given polytope/polyhedron, hyperplane arrangement $P$ return all vertices of $P$.
+		
+	\end{definition}
+	\pause 
+	\begin{alertblock}{Theorem\footnote{Khachiyan et al. [2008]}}
+		The VEP is NP-complete.
+	\end{alertblock}
+	\pause
+	Goals:
+	\begin{itemize}
+		\item should be deterministic
+		\item should be fast
+		\item shouldn't use too much space
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{An Example Problem}
+	\begin{exampleblock}{Example: Meals for 1 Euro}
+	\vspace{0.4cm}
+	\begin{tabular}{|p{0.35cm}|l|p{1.5cm}|p{0.9cm}|p{1.cm}|p{0.75cm}|p{1.5cm}|}
+		\hline
+		Var&Food type&Energy (kcal/100g)&Protein (g)&Calcium (mg)&Price (Euro cents)&Maximum\\
+		\hline
+		$x_1$&Oatmeal\footnote{Regular LIDL oatmeal}&250&15&40&10&500g\\
+		$x_2$&Milk\footnote{Regular Bio LIDL milk}&80&4&130&4&1000g\\
+		$x_3$&DD Stollen\footnote{https://fddb.info}&340&7&30&20&200g\\
+		\hline
+		&\textbf{Min. daily}&\textbf{2000}&\textbf{55}&\textbf{800}&&\\
+		\hline
+	\end{tabular}
+	\vspace{0.4cm}
+	\end{exampleblock}	
+\end{frame}
+
+\begin{frame}{Putting data into inequalities}
+	\begin{exampleblock}{Example: Meals for 1 Euro}
+		\begin{equation*}
+			A = \begin{bmatrix}
+			350&80&340\\
+			15&4&7\\
+			40&130&30\\
+			-10&-4&-20\\
+			-1&0&0\\
+			0&-1&0\\
+			0&0&-1\\
+			\end{bmatrix},
+			x = \begin{bmatrix}
+			x_1\\x_2\\x_3\\
+			\end{bmatrix},
+			-b = \begin{bmatrix}
+			2000\\
+			55\\
+			800\\
+			-100\\
+			-5\\
+			-10\\
+			-2\\
+			\end{bmatrix},
+			\begin{pmatrix}
+			Energy\\
+			Protein\\
+			Calcium\\
+			Price\\
+			x_1Max\\
+			x_2Max\\
+			x_3Max\\
+			\end{pmatrix}
+		\end{equation*}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Polytope visualized}
+	\begin{exampleblock}{Example: Meals for 1 Euro}
+		\begin{figure}[ht]
+			\includegraphics[width = 0.6\textwidth]{allMeals2.png}
+			\caption{The exact shape is unknown/expensive}
+		\end{figure}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}{An Example Problem}
+	\begin{itemize}
+		\item Use convex combination to yield infinitely many food combinations
+	\end{itemize}
+	\pause 
+	\begin{definition}[Convex combination]
+		A convex combination is a linear combination of points. \\
+		
+		Let $x_1, x_2, \dots, x_n$ be a finite set of points. A convex combination is a point of the form 
+		\begin{equation*}
+		y = a_1x_1 + a_2x_2 + \dots + a_nx_n
+		\end{equation*}
+		while $a_1, \dots, a_n\in\mathbb{R^+}$, and
+		\begin{equation*}
+		a_1 + \dots + a_n = 1
+		\end{equation*}
+	\end{definition}
+\end{frame}
+
+\section{Approaches to the VEP}
+\begin{frame}{Approaches to the VEP}
+	\begin{enumerate}
+		\item Double-description/Motzkin-based method
+		\item Pivot-based methods
+		\item Newer methods
+	\end{enumerate}
+\end{frame}
+
+\section{The \textsc{Simplex} Algorithm}
+\begin{frame}{Linear optimization problems}
+	\begin{definition}
+		Let $ G \subseteq \mathbb{R}^n$ be a polyhedron and $ c \in \mathbb{R}^n$. Then a problem of the form \\
+		\vspace{0.15cm}
+		\begin{quotation}
+			$ z = f(x) = c^T \cdot x \rightarrow min\hspace{1cm} with\ x \in G$
+		\end{quotation} 
+		is called a \emph{linear} optimization problem.
+	\end{definition}
+	\pause 
+	\begin{exampleblock}{Protein rich meals for 1 Euro}
+		We are trying to maximize our protein intake:
+		\begin{equation*}
+			c =
+			\begin{bmatrix}
+			15\\4\\7\\
+			\end{bmatrix},
+			x = \begin{bmatrix}
+				x_1\\x_2\\x_3
+			\end{bmatrix}
+		\end{equation*}
+		\begin{equation*}
+			z = c^Tx \rightarrow max
+		\end{equation*}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}{The \textsc{Simplex} Algorithm}
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width = 0.2\textwidth]{George_Dantzig.jpg}
+		\caption{George Dantzig (1914 - 2005)}
+	\end{figure}
+
+	\begin{algorithm}[H]
+		\caption{The \textsc{Simplex} Algorithm}
+		\label{alg:seq}
+		\begin{algorithmic}[1]
+			\STATE Find a first feasible vertex
+			\STATE Calculate the optimal vertex
+		\end{algorithmic}
+	\end{algorithm}
+\end{frame}
+
+
+
+
+\begin{frame}{A visual example}
+	
+	\begin{exampleblock}{Example: From Avis' lecture notes}
+		\begin{equation*}
+			A = \begin{bmatrix}
+			-1&0&1\\
+			0&-1&1\\
+			1&0&1\\
+			0&1&1\\
+			0&0&-1\\
+			\end{bmatrix},
+			x = \begin{bmatrix}
+			x_1\\x_2\\x_3\\
+			\end{bmatrix},
+			-b = \begin{bmatrix}
+			1\\1\\1\\1\\0\\
+			\end{bmatrix},
+			\begin{tabular}{r}
+			$ 1-x_1+x_3\geq 0 $\\
+			$ 1-x_2+x_3\geq 0 $\\
+			$ 1+x_1+x_3\geq 0 $\\
+			$ 1+x_2+x_3\geq 0 $\\
+			$ -x_3 \geq 0 $\\
+			\end{tabular}
+		\end{equation*},
+		
+		
+	\end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}{A visual example}
+	\begin{example}{Example: From Avis' lecture notes}
+		\begin{figure}
+			\begin{tikzpicture}
+			
+			\draw[thick,-stealth] (0,0,0)--(0,0,2); 
+			\draw[thick,-stealth] (0,-2.5,0)--(0,2,0);
+			\draw[-stealth] (0,0,0)--(2,0,0);
+			\coordinate[label={$(0,0,-1)$}] (O) at (0,-2,0);
+			\coordinate[label={$(1,1,0)$}] (A1) at (1,0,1);
+			\coordinate[label={$(1,-1,0)$}] (A2) at (1,0,-1);
+			\coordinate[label={$(-1,1,0)$}] (A3) at (-1,0,1);
+			\coordinate[label={$(-1,-1,0)$}] (A4) at (-1,0,-1);
+			
+			\draw[fill=blue,opacity=0.3] (A1)--(A2)--(A3);
+			\draw[fill=blue,opacity=0.3] (A4)--(A2)--(A3);
+			\draw[fill=blue,opacity=0.3] (A1)--(O)--(A3);
+			\draw[fill=blue,opacity=0.3] (A1)--(O)--(A2);
+			\draw[thick](A1)--(A3);
+			\draw[thick](A1)--(A2);
+			\draw[thick](A4)--(A3);
+			\draw[thick](A2)--(A4);
+			\draw[thick](O)--(A3);
+			\draw[thick](O)--(A1);
+			\draw[thick](O)--(A2);
+			\draw[thick](O)--(A4);
+			\end{tikzpicture}
+			\caption{$P$ is a regular pyramid}
+		\end{figure}
+	\end{example}
+\end{frame}
+
+\begin{frame}{The \textsc{Simplex} Algorithm}
+	\begin{example}{A linear OP example}
+		content...
+	\end{example}
+\end{frame}
+
+\begin{frame}{Sources}
+	\footnotesize
+	\begin{thebibliography}{9}
+		\bibitem{VEPhard} 
+			L. Khachiyan, E. Boros, K. Borys, K. Elbassioni, and V. Gurvich. Generating all verticesof a polyhedron is hard.Discrete and Computational Geometry, 39(1):174–190, 2008.
+		
+	\end{thebibliography}
+\end{frame}
+
+\end{document}

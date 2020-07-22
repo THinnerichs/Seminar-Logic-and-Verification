@@ -1,0 +1,8 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {nil}{}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {1}{The Vertex Enumeration Problem}{2}{0}{1}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {2}{Approaches to the VEP}{15}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {3}{The \textsc {Simplex} Algorithm}{16}{0}{3}
