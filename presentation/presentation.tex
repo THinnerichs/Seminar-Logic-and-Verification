@@ -265,6 +265,266 @@
 	\end{algorithm}
 \end{frame}
 
+\begin{frame}{From $\geq$ to =}
+	The inequalities 
+	\begin{equation*}
+		Ax + b \geq 0
+	\end{equation*}
+	describing $P$ are transformed to the equivalent equality system
+	\begin{equation*}
+		Mx + b = x_p
+	\end{equation*}
+	with $x\in \mathbb{R}_+^n$, $ x_p \in \mathbb{R}_+^m$, and $M\in \mathbb{R}^{m\times n}$ (if $x\geq 0$)\\
+	\pause
+	\begin{definition}[Tableau form]
+		A linear program of the form \\
+		\vspace{0.25cm}
+		$ z = f'(x') = c'^T \cdot x' \rightarrow max$ 
+		\hspace{0.5cm} with $Mx_N+b=x_B$ with \begin{tabular}{l}
+			$x_N:=x,$ \\
+			$x_B:=x_p,$\\ $x'\leftrightarrow\begin{pmatrix}
+			x_N\\x_B\\
+			\end{pmatrix} $\\
+			$b\geq 0$
+		\end{tabular}  \\
+		\vspace{0.15cm}
+		is said to be in \textbf{tableau form}.\\
+	\end{definition}
+\end{frame}
+
+\begin{frame}[fragile]{}
+	\begin{exampleblock}{Another example}
+	\begin{tabular}{rrrrrrrrrr}
+		&$ -z $&$=$& $-30x_1$ &$-$&$45x_2$ &$\rightarrow$& \textbf{$min$}&& \\
+		\\
+		with&$\cellcolor{cyan}x_3$&$=$&$-4x_1$ &$-$&$3x_2$&$+$&$100$&&\\
+		&\cellcolor{cyan}$x_4$&$=$&$-x_1$ & $-$&$2x_2$&$+$&$50$&&\\
+		&$x_3,x_4$&,&\cellcolor{orange}$x_1$ &, &\cellcolor{orange}$x_2$&$\geq$&$0$
+	\end{tabular} \\
+	\vspace{0.5cm}
+	\begin{tabular}{ll}
+		\cellcolor{orange}\textcolor{orange}{aaa} & non-base variables, with indices $N = \{1,2\}, |N| = n$\\
+		\cellcolor{cyan}\textcolor{cyan}{aaa}& base variables, with indices $B = \{3, 4\}, |B| = m$
+	\end{tabular}\\
+
+	\vspace{0.5cm}
+	\textsc{Simplex}-Tableau: %\hspace{1cm}
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{r|rr|r}
+		$ST_0$&$x_1$&$x_2$&$1$\\
+		\hline
+		$x_3=$&$-4$&$-3$&$100$\\
+		$x_4=$&$-1$&$-2$&$50$\\
+		\hline
+		$-z=$&$-30$&$-45$&$0$
+	\end{tabular}
+	\endgroup
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{r|r|r}
+		$ST_0$&$x_N$&$1$\\
+		\hline
+		$x_B=$&$M$&$p$\\
+		&&\\
+		\hline
+		$z=$&$q^T$&$q_0$
+	\end{tabular}
+	\endgroup
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}{}
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{r|r|r}
+		$ST_0$&$x_N$&$1$\\
+		\hline
+		$x_B=$&$M$&$p$\\
+		\hline
+		$z=$&$q^T$&$q_0$
+	\end{tabular}
+	\endgroup \\
+	\vspace{0.25cm}
+	$ x_N $ results from $ x $ and $ N $ \\
+	$ x_B $ results from  $ x $ and $ B $ \\ 
+	$M$ results from $A$ \\
+	$p:=b$ \\
+	$ q := c' $\\
+	$ q_0:=0$ \\
+	\vspace{0.25cm}
+\end{frame}
+
+\begin{frame}{Visualization of new polytope $P$}
+	
+	\begin{tikzpicture}[x=0.15cm,y=0.1cm]
+	
+	\def\xmin{0}
+	\def\xmax{60}
+	\def\ymin{0}
+	\def\ymax{50}
+	
+	% grid
+	\draw[style=help lines, ystep=10, xstep=5] (\xmin,\ymin) grid
+	(\xmax,\ymax);
+	
+	% axes
+	\draw[->, thick] (\xmin,\ymin) -- (\xmax+10,\ymin) node[right] {$x_1$};
+	\draw[->, thick] (\xmin,\ymin) -- (\xmin,\ymax+10) node[above] {$x_2$};
+	
+	% xticks and yticks
+	\foreach \x in {0,10,...,60}
+	\node at (\x, \ymin) [below] {\x};
+	\foreach \y in {0,10,...,50}
+	\node at (\xmin,\y) [left] {\y};
+	
+	% plot the data from the file data.dat
+	% smooth the curve and mark the data point with a dot
+	
+	% generate and plot another a curve y = 0.1 x^2 + 2.5
+	% this generates the files figure.parabola.gnuplot and figure.parabola.table 
+	%\draw[color=red, domain=\xmin:\xmax] plot[id=parabola]
+	%function{0.1*x**2 + 2.5} node [right] {$y=0.1\,x^2 + 2.5$};
+	\draw [thick, blue](0,33.3) -- (25,0) ;
+	\draw [thick, red](0,25) -- (50,0) ;
+	
+	\node[draw,circle,inner sep=2pt,fill] at (0,0){};
+	\filldraw[thick,fill=red,fill opacity=0.4] (0,0) -- (0,25) -- (10,20) -- (25,0) -- (0,0) -- cycle;
+	\begin{customlegend}[
+	legend entries={ % <= in the following there are the entries
+		$ x_2 = -\frac{4}{3}\cdot x_1 + \frac{100}{3} $,
+		$x_2 = -\frac{1}{2}\cdot x_1 + 25$
+	},
+	legend style={at={(60,50)},font=\footnotesize}] % <= to define position and font legend
+	% the following are the "images" and numbers in the legend
+	\addlegendimage{thick,blue,opacity = 1}
+	\addlegendimage{thick,red,opacity = 1}
+	\end{customlegend}
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Phase 1: Determine first feasible basic solution}
+	\begin{algorithm}[H]
+		\caption{Phase 1: Determine first feasible basic solution (vertex)}
+		\label{alg:seq}
+		\begin{algorithmic}[1]
+			\IF{trivial solution visible}
+			\STATE choose it
+			\ENDIF
+			\STATE ...
+		\end{algorithmic}
+	\end{algorithm}
+	
+	\begin{definition}
+		The point \\
+		\vspace{0.15cm}
+		$x \leftrightarrow \left(\begin{array}{c}  x_B \\ x_N \end{array}\right) = \left(\begin{array}{c}p \\ 0 \end{array}\right)$\\
+		\vspace{0.15cm}
+		is called \textbf{basic solution}. \\If $p \geq 0$, x is called \textbf{basic feasible solution(BFS)}.
+	\end{definition}
+\end{frame}
+
+\begin{frame}{Phase 2: Bestimmung der optimalen Ecke}
+	\begin{algorithm}[H]
+		\caption{Phase 2: Bestimmung der optimalen Ecke}
+		\label{alg:seq}
+		\begin{algorithmic}[1]
+			\WHILE{$\tau\in N$ mit $q_\tau <0$ existiert}
+			\STATE Wähle das \textsc{Pivot}-Element $ P_{\sigma \tau} $
+			\STATE Berechne mit Hilfe der Tauschungsregeln das neue Simplextableau
+			\ENDWHILE
+		\end{algorithmic}
+	\end{algorithm}
+	\pause
+	\begin{alertblock}{Satz}
+		Das \textsc{Simplex}-Tableau ist optimal gdw. $ p \geq 0 $ und $ q \geq 0 $
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}{Die Wahl des \textsc{Pivot}-Elements}
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{r|r|r}
+		$ST_0$&$x_N$&$1$\\
+		\hline
+		$x_B=$&$P$&$p$\\
+		\hline
+		$z=$&$q^T$&$q_0$
+	\end{tabular}
+	\endgroup
+	\\\vspace{0.25cm}
+	Wir wählen $\tau\in N$ mit $q_\tau < 0$ beliebig, und bilden daraufhin $ - \dfrac{p_\sigma}{P_{\sigma\tau}} := \min \left\{ -\frac{p_i}{P_{i\tau}} | -\frac{p_i}{P_{i\tau}} < 0, i\in B \right\} $: \\
+	\vfill
+	
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{r|rr|r}
+		$ST_0$&$x_1$&$x_2$&$1$\\
+		\hline
+		$x_3=$&$-4$&$-3$&$100$\\
+		$x_4=$&$-1$&\cellcolor{orange}$-2$&$50$\\
+		\hline
+		$-z=$&$-30$&$-45$&$0$
+	\end{tabular}
+	\endgroup
+	$\implies \tau := 2, \sigma:=4 $
+\end{frame}
+
+\begin{frame}
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{r|rr|r}
+		$ST_0$&$x_1$&$x_2$&$1$\\
+		\hline
+		$x_3=$&$-4$&$-3$&$100$\\
+		$x_4=$&$-1$&\cellcolor{orange}$-2$&$50$\\
+		\hline
+		$-z=$&$-30$&$-45$&$0$
+	\end{tabular}\pause\hspace{1cm}
+	\def\arraystretch{2}
+	\begin{tabular}{r|rr|r}
+		$ST_1$&$x_1$&$x_4$&$1$\\
+		\hline
+		$x_3=$&\only<3->{\cellcolor{orange}}$-\dfrac{5}{2}$&$\dfrac{3}{2}$&$25$\\
+		$x_2=$&$-\dfrac{1}{2}$&$-\dfrac{1}{2}$&$25$\\
+		\hline
+		$-z=$&$-\dfrac{15}{2}$&$\dfrac{45}{2}$&$-1125$
+	\end{tabular}
+	\\
+	\visible<4->{
+		\begin{tabular}{r|rr|r}
+			$ST_2$&$x_3$&$x_4$&$1$\\
+			\hline
+			$x_1=$&$-\dfrac{2}{5}$&$\dfrac{3}{5}$&$10$\\
+			$x_2=$&$\dfrac{1}{5}$&$-\dfrac{8}{10}$&$20$\\
+			\hline
+			$-z=$&$3$&$18$&$-1200$
+		\end{tabular}
+	}
+	\endgroup
+\end{frame}
+
+\begin{frame}{Properties of the \textsc{Simplex} algorithm}
+	
+	\begin{itemize}
+		\item Does not always terminate
+		\begin{itemize}
+			\item easily fixable by introducing an ordering among the nodes
+		\end{itemize}
+	\end{itemize}
+	\pause 
+	\begin{alertblock}{Theorem}
+		For a given basic feasible solution (BFS) $v$ the \textsc{Simplex} algorithm deterministically determines a path from $v$ to the optimal vertex $v*$.
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}{Some thoughts}
+	\begin{enumerate}
+		\item What if we choose a pair of indices different from the optimal one in a simplex step?
+		\item  
+	\end{enumerate}
+\end{frame}
+
 
 
 

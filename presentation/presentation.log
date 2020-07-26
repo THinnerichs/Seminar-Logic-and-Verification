@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2020.7.20)  22 JUL 2020 16:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2020.7.20)  26 JUL 2020 13:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1296,7 +1296,14 @@ File: l3backend-pdfmode.def 2020-06-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count480
 \l__pdf_internal_box=\box112
 )
-(./presentation.aux)
+(./presentation.aux
+
+LaTeX Warning: Label `alg:seq' multiply defined.
+
+
+LaTeX Warning: Label `alg:seq' multiply defined.
+
+)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
 LaTeX Font Info:    ... okay on input line 71.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
@@ -1599,7 +1606,7 @@ Overfull \hbox (1.17879pt too wide) in paragraph at lines 147--147
 ] [11
 
 ]
-<allMeals2.png, id=372, 942.52126pt x 654.445pt>
+<allMeals2.png, id=371, 942.52126pt x 654.445pt>
 File: allMeals2.png Graphic file (type png)
 <use allMeals2.png>
 Package pdftex.def Info: allMeals2.png  used on input line 193.
@@ -1636,55 +1643,109 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <14.4> not available
 
  <./George_Dantzig.jpg>] [19
 
-]
-Overfull \vbox (9.13197pt too high) detected at line 333
- []
+] [20
 
-[20
-
-] [21
+] (./presentation.vrb) [21
 
 ] [22
+
+]
+Overfull \hbox (24.21313pt too wide) in paragraph at lines 404--404
+[][]  
+ []
+
+[23
+
+]pdfTeX warning (ext4): destination with the same identifier (name{alg:seq}) ha
+s been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.425 \end{frame}
+                  [24
+
+]pdfTeX warning (ext4): destination with the same identifier (name{alg:seq}) ha
+s been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.442 \end{frame}
+                  [25
+
+] [26
+
+] [27
+
+] [28
+
+] [29
+
+] [30
+
+] [31
+
+] [32
+
+] [33
+
+] [34
+
+] [35
+
+]
+Overfull \vbox (9.13197pt too high) detected at line 593
+ []
+
+[36
+
+] [37
+
+] [38
 
  </usr/share/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>]
 \tf@nav=\write7
 \tf@toc=\write8
 \tf@snm=\write9
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 350.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 350.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 610.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 610.
 
 (./presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 350.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 350.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 610.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 610.
 Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: 6434E8D7A066A5D7383EC3792FFB1FE1;177.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package logreq Info: Writing requests to 'presentation.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
- 44269 strings out of 480478
- 1017813 string characters out of 5905959
- 1808160 words of memory out of 5000000
- 59411 multiletter control sequences out of 15000+600000
- 546386 words of font info for 74 fonts, out of 8000000 for 9000
+ 44428 strings out of 480478
+ 1020734 string characters out of 5905959
+ 1808199 words of memory out of 5000000
+ 59535 multiletter control sequences out of 15000+600000
+ 548036 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,18n,103p,1137b,2375s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmss10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmss12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></u
-sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmssi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-si9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
-share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dis
-t/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/t
-ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (22 pages, 281475 bytes).
+ic/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></us
+r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmss9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi1
+0.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/s
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on presentation.pdf (38 pages, 361149 bytes).
 PDF statistics:
- 768 PDF objects out of 1000 (max. 8388607)
- 687 compressed objects within 7 object streams
- 50 named destinations out of 1000 (max. 500000)
+ 1264 PDF objects out of 1440 (max. 8388607)
+ 1142 compressed objects within 12 object streams
+ 82 named destinations out of 1000 (max. 500000)
  77 words of extra memory for PDF output out of 10000 (max. 10000000)
 
