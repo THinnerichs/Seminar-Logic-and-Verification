@@ -3,6 +3,12 @@
 \defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {1}{The Vertex Enumeration Problem}{2}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {2}{Approaches to the VEP}{15}{0}{2}
+\beamer@sectionintoc {2}{The \textsc {Simplex} Algorithm}{14}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {3}{The \textsc {Simplex} Algorithm}{16}{0}{3}
+\beamer@sectionintoc {3}{From pivot step to VEP solution}{33}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{1}{Degeneracy of Vertices}{33}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{2}{Bland's rule}{36}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{3}{Avis-Fukuda Algoritm}{45}{0}{3}

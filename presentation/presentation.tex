@@ -17,6 +17,7 @@
 \usepackage{tabularx}
 
 \usepackage[style=mla]{biblatex}
+\usepackage{appendixnumberbeamer}
 
 
 %definitions
@@ -26,6 +27,7 @@
 \usetheme{Dresden}
 \usecolortheme{rose}
 \useoutertheme{tree}
+
 
 %environments
 \newenvironment{ExampleGer}{\begin{exampleblock}{Example}}{\end{exampleblock}}
@@ -53,10 +55,10 @@
 }
 
 %general
-\title{A Simplex based approach to Vertex Enumeration of Arrangements and Polyhedra}
+\title{A Pivot based approach to Vertex Enumeration of Polytopes and Polyhedra}
 \author{Tilman Hinnerichs}
-\institute{Seminar \glqq Selected Topics in Logic and Verification\grqq{} -- TU Dresden}
-\date{July 27, 2020}
+\institute{Hauptseminar \glqq Selected Topics in Logic and Verification\grqq{} -- TU Dresden}
+\date{July 28, 2020}
 
 %presentation
 \expandafter\def\expandafter\insertshorttitle\expandafter{%
@@ -119,17 +121,10 @@
 	\begin{alertblock}{Theorem\footnote{Khachiyan et al. [2008]}}
 		The VEP is NP-complete.
 	\end{alertblock}
-	\pause
-	Goals:
-	\begin{itemize}
-		\item should be deterministic
-		\item should be fast
-		\item shouldn't use too much space
-	\end{itemize}
 \end{frame}
 
 \begin{frame}{An Example Problem}
-	\begin{exampleblock}{Example: Meals for 1 Euro}
+	\begin{exampleblock}{Example: All meals for 1 Euro}
 	\vspace{0.4cm}
 	\begin{tabular}{|p{0.35cm}|l|p{1.5cm}|p{0.9cm}|p{1.cm}|p{0.75cm}|p{1.5cm}|}
 		\hline
@@ -184,7 +179,7 @@
 \end{frame}
 
 \begin{frame}{Polytope visualized}
-	\begin{exampleblock}{Example: Meals for 1 Euro}
+	\begin{exampleblock}{Example: All meals for 1 Euro}
 		\begin{figure}[ht]
 			\includegraphics[width = 0.6\textwidth]{allMeals2.png}
 			\caption{The exact shape is unknown/expensive}
@@ -211,14 +206,7 @@
 	\end{definition}
 \end{frame}
 
-\section{Approaches to the VEP}
-\begin{frame}{Approaches to the VEP}
-	\begin{enumerate}
-		\item Double-description/Motzkin-based method
-		\item Pivot-based methods
-		\item Newer methods
-	\end{enumerate}
-\end{frame}
+
 
 \section{The \textsc{Simplex} Algorithm}
 \begin{frame}{Linear optimization problems}
@@ -279,7 +267,7 @@
 	\begin{definition}[Tableau form]
 		A linear program of the form \\
 		\vspace{0.25cm}
-		$ z = f'(x') = c'^T \cdot x' \rightarrow max$ 
+		$ z = f'(x') = c'^T \cdot x' \rightarrow min$ 
 		\hspace{0.5cm} with $Mx_N+b=x_B$ with \begin{tabular}{l}
 			$x_N:=x,$ \\
 			$x_B:=x_p,$\\ $x'\leftrightarrow\begin{pmatrix}
@@ -303,8 +291,8 @@
 	\end{tabular} \\
 	\vspace{0.5cm}
 	\begin{tabular}{ll}
-		\cellcolor{orange}\textcolor{orange}{aaa} & non-base variables, with indices $N = \{1,2\}, |N| = n$\\
-		\cellcolor{cyan}\textcolor{cyan}{aaa}& base variables, with indices $B = \{3, 4\}, |B| = m$
+		\cellcolor{orange}\textcolor{orange}{aaa} & non-basic variables, with indices $N = \{1,2\}, |N| = n$\\
+		\cellcolor{cyan}\textcolor{cyan}{aaa}& basic variables, with indices $B = \{3, 4\}, |B| = m$
 	\end{tabular}\\
 
 	\vspace{0.5cm}
@@ -403,45 +391,62 @@
 	\end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Phase 1: Determine first feasible basic solution}
-	\begin{algorithm}[H]
-		\caption{Phase 1: Determine first feasible basic solution (vertex)}
-		\label{alg:seq}
-		\begin{algorithmic}[1]
-			\IF{trivial solution visible}
-			\STATE choose it
-			\ENDIF
-			\STATE ...
-		\end{algorithmic}
-	\end{algorithm}
-	
-	\begin{definition}
-		The point \\
-		\vspace{0.15cm}
-		$x \leftrightarrow \left(\begin{array}{c}  x_B \\ x_N \end{array}\right) = \left(\begin{array}{c}p \\ 0 \end{array}\right)$\\
-		\vspace{0.15cm}
-		is called \textbf{basic solution}. \\If $p \geq 0$, x is called \textbf{basic feasible solution(BFS)}.
-	\end{definition}
+\begin{frame}{Evaluating the \textsc{Simplex} tableau}
+	\begin{figure}
+		\centering
+		\begingroup
+		\def\arraystretch{1.5}
+		\begin{tabular}{r|rr|r}
+			$ST_0$&$x_1$&$x_2$&$1$\\
+			\hline
+			$x_3=$&$-4$&$-3$&$100$\\
+			$x_4=$&$-1$&$-2$&$50$\\
+			\hline
+			$-z=$&$-30$&$-45$&$0$
+		\end{tabular}
+		\endgroup
+	\end{figure}
 \end{frame}
 
-\begin{frame}{Phase 2: Bestimmung der optimalen Ecke}
+%\begin{frame}{Phase 1: Determine first feasible basic solution}
+%	\begin{algorithm}[H]
+%		\caption{Phase 1: Determine first feasible basic solution (vertex)}
+%		\label{alg:seq}
+%		\begin{algorithmic}[1]
+%			\IF{trivial solution visible}
+%			\STATE choose it
+%			\ENDIF
+%			\STATE ...
+%		\end{algorithmic}
+%	\end{algorithm}
+%	
+%	\begin{definition}
+%		The point \\
+%		\vspace{0.15cm}
+%		$x \leftrightarrow \left(\begin{array}{c}  x_B \\ x_N \end{array}\right) = \left(\begin{array}{c}p \\ 0 \end{array}\right)$\\
+%		\vspace{0.15cm}
+%		is called \textbf{basic solution}. \\If $p \geq 0$, x is called \textbf{basic feasible solution(BFS)}.
+%	\end{definition}
+%\end{frame}
+
+\begin{frame}{Phase 2: Determine optimal vertex}
 	\begin{algorithm}[H]
-		\caption{Phase 2: Bestimmung der optimalen Ecke}
+		\caption{Phase 2: Determine optimal vertex}
 		\label{alg:seq}
 		\begin{algorithmic}[1]
-			\WHILE{$\tau\in N$ mit $q_\tau <0$ existiert}
-			\STATE Wähle das \textsc{Pivot}-Element $ P_{\sigma \tau} $
-			\STATE Berechne mit Hilfe der Tauschungsregeln das neue Simplextableau
+			\WHILE{$\tau\in N$ with $q_\tau <0$ exists}
+			\STATE Choose \textsc{Pivot} element $ M_{\sigma \tau} $
+			\STATE Calculate the new tableau under usage of swapping rules
 			\ENDWHILE
 		\end{algorithmic}
 	\end{algorithm}
 	\pause
-	\begin{alertblock}{Satz}
-		Das \textsc{Simplex}-Tableau ist optimal gdw. $ p \geq 0 $ und $ q \geq 0 $
+	\begin{alertblock}{Theorem}
+		The \textsc{Simplex} tableau is optimal \textbf{iff} $ p \geq 0 $ and $ q \geq 0 $
 	\end{alertblock}
 \end{frame}
 
-\begin{frame}{Die Wahl des \textsc{Pivot}-Elements}
+\begin{frame}{Choosing a pivot element}
 	\begingroup
 	\def\arraystretch{1.5}
 	\begin{tabular}{r|r|r}
@@ -453,7 +458,7 @@
 	\end{tabular}
 	\endgroup
 	\\\vspace{0.25cm}
-	Wir wählen $\tau\in N$ mit $q_\tau < 0$ beliebig, und bilden daraufhin $ - \dfrac{p_\sigma}{P_{\sigma\tau}} := \min \left\{ -\frac{p_i}{P_{i\tau}} | -\frac{p_i}{P_{i\tau}} < 0, i\in B \right\} $: \\
+	We choose an arbitrary $\tau\in N$ with $q_\tau < 0$, and calculate $ - \dfrac{p_\sigma}{P_{\sigma\tau}} := \min \left\{ -\frac{p_i}{P_{i\tau}} | -\frac{p_i}{P_{i\tau}} < 0, i\in B \right\} $: \\
 	\vfill
 	
 	\begingroup
@@ -504,57 +509,283 @@
 	\endgroup
 \end{frame}
 
-\begin{frame}{Properties of the \textsc{Simplex} algorithm}
+\begin{frame}
+	\begin{tikzpicture}[x=0.15cm,y=0.1cm]
 	
-	\begin{itemize}
-		\item Does not always terminate
-		\begin{itemize}
-			\item easily fixable by introducing an ordering among the nodes
-		\end{itemize}
-	\end{itemize}
-	\pause 
-	\begin{alertblock}{Theorem}
-		For a given basic feasible solution (BFS) $v$ the \textsc{Simplex} algorithm deterministically determines a path from $v$ to the optimal vertex $v*$.
-	\end{alertblock}
+	\def\xmin{0}
+	\def\xmax{60}
+	\def\ymin{0}
+	\def\ymax{50}
+	
+	% grid
+	\draw[style=help lines, ystep=10, xstep=5] (\xmin,\ymin) grid
+	(\xmax,\ymax);
+	
+	% axes
+	\draw[->, thick] (\xmin,\ymin) -- (\xmax+10,\ymin) node[right] {$x_1$};
+	\draw[->, thick] (\xmin,\ymin) -- (\xmin,\ymax+10) node[above] {$x_2$};
+	
+	% xticks and yticks
+	\foreach \x in {0,10,...,60}
+	\node at (\x, \ymin) [below] {\x};
+	\foreach \y in {0,10,...,50}
+	\node at (\xmin,\y) [left] {\y};
+	
+	% plot the data from the file data.dat
+	% smooth the curve and mark the data point with a dot
+	
+	% generate and plot another a curve y = 0.1 x^2 + 2.5
+	% this generates the files figure.parabola.gnuplot and figure.parabola.table 
+	%\draw[color=red, domain=\xmin:\xmax] plot[id=parabola]
+	%function{0.1*x**2 + 2.5} node [right] {$y=0.1\,x^2 + 2.5$};
+	\draw [thick, blue](0,33.3) -- (25,0) ;
+	\draw [thick, red](0,25) -- (50,0) ;
+	
+	\node[draw,circle,inner sep=2pt,fill] at (0,0){};
+	\filldraw[thick,fill=red,fill opacity=0.4] (0,0) -- (0,25) -- (10,20) -- (25,0) -- (0,0) -- cycle;
+	\begin{customlegend}[
+	legend entries={ % <= in the following there are the entries
+		$ x_2 = -\frac{4}{3}\cdot x_1 + \frac{100}{3} $,
+		$x_2 = -\frac{1}{2}\cdot x_1 + 25$
+	},
+	legend style={at={(60,50)},font=\footnotesize}] % <= to define position and font legend
+	% the following are the "images" and numbers in the legend
+	\addlegendimage{thick,blue,opacity = 1}
+	\addlegendimage{thick,red,opacity = 1}
+	\end{customlegend}
+	\node[draw,circle,inner sep=2pt,fill] at (0,0){};
+	\node[draw,circle,inner sep=2pt,fill,blue] at (0,25){};
+	\node[draw,circle,inner sep=2pt,fill, red] at (10,20){};
+	
+	
+	\filldraw[thick,fill=red,fill opacity=0.4] (0,0) -- (0,25) -- (10,20) -- (25,0) -- (0,0) -- cycle;
+	\end{tikzpicture}
 \end{frame}
 
 \begin{frame}{Some thoughts}
 	\begin{enumerate}
 		\item What if we choose a pair of indices different from the optimal one in a simplex step?
-		\item  
+		\pause
+		\item How does this help to build a solution for the VEP?
 	\end{enumerate}
 \end{frame}
 
+\section{From pivot step to VEP solution}
+\subsection{Degeneracy of Vertices}
+\begin{frame}{Degeneracy of Vertices}
+	\begin{definition}[Degeneracy]
+		Let $P\subseteq\mathbb{R}^d$.\\
+		We will call a vertex $A$ that satisfies $d+1$ given inequalities with equality \textbf{degenerate}.
+	\end{definition}
+	\pause 
+	\begin{exampleblock}{Example}
+		\begin{figure}
+			\centering
+			\begingroup
+			\def\arraystretch{1.5}
+			\begin{tabular}{r|rr|r}
+				$ST_0$&$x_1$&$x_2$&$1$\\
+				\hline
+				$x_3=$&$-4$&$-3$&$0$\\
+				$x_4=$&$-1$&$-2$&$50$\\
+				\hline
+				$-z=$&$-30$&$-45$&$0$
+			\end{tabular}
+			\endgroup
+		\end{figure}
+	\end{exampleblock}
+\end{frame}
 
 
+\begin{frame}{A Visual Example}
+	\begin{example}{Example: From Avis' lecture notes}
+		\begin{figure}
+			\begin{tikzpicture}
+			
+			\draw[thick,-stealth] (0,0,0)--(0,0,2); 
+			\draw[thick,-stealth] (0,-2.5,0)--(0,2,0);
+			\draw[-stealth] (0,0,0)--(2,0,0);
+			\coordinate[label={$(0,0,-1)$}] (O) at (0,-2,0);
+			\coordinate[label={$(1,1,0)$}] (A1) at (1,0,1);
+			\coordinate[label={$(1,-1,0)$}] (A2) at (1,0,-1);
+			\coordinate[label={$(-1,1,0)$}] (A3) at (-1,0,1);
+			\coordinate[label={$(-1,-1,0)$}] (A4) at (-1,0,-1);
+			
+			\draw[fill=blue,opacity=0.3] (A1)--(A2)--(A3);
+			\draw[fill=blue,opacity=0.3] (A4)--(A2)--(A3);
+			\draw[fill=blue,opacity=0.3] (A1)--(O)--(A3);
+			\draw[fill=blue,opacity=0.3] (A1)--(O)--(A2);
+			\draw[thick](A1)--(A3);
+			\draw[thick](A1)--(A2);
+			\draw[thick](A4)--(A3);
+			\draw[thick](A2)--(A4);
+			\draw[thick](O)--(A3);
+			\draw[thick](O)--(A1);
+			\draw[thick](O)--(A2);
+			\draw[thick](O)--(A4);
+			\end{tikzpicture}
+			\caption{$P$ is a regular pyramid}
+		\end{figure}
+	\end{example}
+\end{frame}
+
+
+\subsection{Bland's rule}
+\begin{frame}{Properties of the \textsc{Simplex} algorithm}
+	
+	\begin{itemize}
+		\item Does not always terminate
+	\end{itemize}
+	\pause
+	\begin{definition}[Bland's rule]
+		During a Simplex step, if several options are available choose the lowest-numbered non-basic column with negative (reduced) cost and the lowest-numbered basic variable.
+	\end{definition}
+	\pause 
+	\begin{alertblock}{Theorem}
+		For a given basic feasible solution (BFS) $v$ Bland's rule deterministically determines a path from $v$ along the vertices to the optimal vertex $v^*$.
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}{}
+	\begin{exampleblock}{Example: Meals for 1 Euro}
+		\begin{figure}[ht]
+			\includegraphics[width = 0.8\textwidth]{Polytope_tree.png}
+			\caption{The paths span a tree of all vertices}
+		\end{figure}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Algorithm: Avis-Fukuda 1992}
+	Idea: 
+	\begin{itemize}
+		\item reverse search this spanning tree starting from the root
+	\end{itemize}
+	\pause 
+	\begin{definition}[]
+		Let $A$ be a basic feasible solution (vertex).\\
+		Let $(\tau, \sigma)$ be the pivot obtained by applying Bland's rule to $A$ yielding $A'$.  \\
+		We call $(\sigma, \tau)$ the \textit{reverse pivot} for $A'$.
+	\end{definition}
+	\pause
+	\begin{definition}[Neighbour]
+		$Adj(N, i,j) := \left\{ \begin{matrix}
+			\emptyset&M_{ij}=0\\
+			\emptyset&(N\cup \{i\})-\{j\} \text{ infeasible dictionary}\\
+			
+			(N\cup \{i\})-\{j\}&\text{feasible dictionary}
+			\end{matrix} \right.$
+	\end{definition}
+	
+\end{frame}
+
+\begin{frame}{Algorithm: Avis-Fukuda 1992}
+	\begin{alertblock}{Problem}
+		For any given vertex/BFS $A$ we know its successor $A'$. \\
+		When to introduce an edge in the tree between $A$ and any other neighbour $Adj(A_N, i,j)$ for $i\in A_B, j\in A_N$?
+	\end{alertblock}
+	\pause 
+	\begin{itemize}
+		\item Perform conditional depth first search
+	\end{itemize}
+\end{frame}
+
+\subsection{Avis-Fukuda Algoritm}
+\begin{frame}{Algorithm: Avis-Fukuda 1992}
+	\begin{algorithm}[H]
+		\caption{Phase 2: Determine optimal vertex}
+		\label{alg:seq}
+		\begin{algorithmic}[1]
+			\STATE \textsc{Search}\textbf{(B,N,M):}
+			\FOR{all $i,j$ in \textsc{neighbours}$(B,N,M)$}
+			\IF{ \textsc{reverse}$(B,N,M,i,j)$}
+			\STATE \textsc{pivot}$(B,N,M,i,j)$
+			
+			\IF{\textsc{lex\_min}$(B,N,M)$}
+			\STATE $print(B)$
+			\ENDIF
+			\STATE \textsc{Search}$(B,N,M)$
+			\STATE \textsc{select-pivot}$(M)$
+			\STATE \textsc{pivot}$(B,N,M,i,j)$
+			
+			\ENDIF
+			\ENDFOR
+		\end{algorithmic}
+	\end{algorithm}
+\end{frame}
+
+\begin{frame}{Complexity and features}
+	The algorithm has the following properties:
+	\begin{itemize}
+		\item Virtually no additional storage is required beyond the input data
+		\item The output list is free of duplicates
+		\item The algorithm is extremely simple, requires no data structures, and handles all degenerate cases
+		\item The running time is output sensitive for nondegenerate cases
+		\item The algorithm is easy to parallelize efficiently
+	\end{itemize}
+ 	\pause
+	\vspace{0.5cm}
+	Complexity ($v$ vertices of  $P\subseteq\mathbb{R}^d$, $n$ inequalities):
+	\begin{itemize}
+		\item in time $\mathcal{O}(ndv)$
+		\item in space $\mathcal{O}(nd)$
+	\end{itemize}
+	
+\end{frame}
+
+
+\appendix
+\begin{frame}{Sources}
+	\footnotesize
+	\begin{thebibliography}{9}
+		\bibitem{VEPhard} 
+			L. Khachiyan, E. Boros, K. Borys, K. Elbassioni, and V. Gurvich. Generating all verticesof a polyhedron is hard.Discrete and Computational Geometry, 39(1):174–190, 2008.
+		\bibitem{Fukuda}
+			D. Avis, K. Fukuda.
+			A pivoting algorithm for convex hulls and vertex enumeration of arrangements and polyhedra
+.
+			Discrete Comput. Geom., 8 (1992), pp. 295-313
+		\bibitem{FukudaLec}
+			Fukuda lecture nodes at Tokio University
+		\bibitem{AvisLev}
+			Avis lecture nodes at Montreal University
+		
+	\end{thebibliography}
+\end{frame}
+
+
+\begin{frame}{Approaches to the VEP}
+	\begin{enumerate}
+		\item Double-description/Motzkin-based method
+		\item Pivot-based methods
+		\item Newer methods
+	\end{enumerate}
+\end{frame}
 
 \begin{frame}{A visual example}
 	
 	\begin{exampleblock}{Example: From Avis' lecture notes}
 		\begin{equation*}
-			A = \begin{bmatrix}
-			-1&0&1\\
-			0&-1&1\\
-			1&0&1\\
-			0&1&1\\
-			0&0&-1\\
-			\end{bmatrix},
-			x = \begin{bmatrix}
-			x_1\\x_2\\x_3\\
-			\end{bmatrix},
-			-b = \begin{bmatrix}
-			1\\1\\1\\1\\0\\
-			\end{bmatrix},
-			\begin{tabular}{r}
-			$ 1-x_1+x_3\geq 0 $\\
-			$ 1-x_2+x_3\geq 0 $\\
-			$ 1+x_1+x_3\geq 0 $\\
-			$ 1+x_2+x_3\geq 0 $\\
-			$ -x_3 \geq 0 $\\
-			\end{tabular}
-		\end{equation*},
-		
-		
+		A = \begin{bmatrix}
+		-1&0&1\\
+		0&-1&1\\
+		1&0&1\\
+		0&1&1\\
+		0&0&-1\\
+		\end{bmatrix},
+		x = \begin{bmatrix}
+		x_1\\x_2\\x_3\\
+		\end{bmatrix},
+		-b = \begin{bmatrix}
+		1\\1\\1\\1\\0\\
+		\end{bmatrix},
+		\begin{tabular}{r}
+		$ 1-x_1+x_3\geq 0 $\\
+		$ 1-x_2+x_3\geq 0 $\\
+		$ 1+x_1+x_3\geq 0 $\\
+		$ 1+x_2+x_3\geq 0 $\\
+		$ -x_3 \geq 0 $\\
+		\end{tabular}
+		\end{equation*}		
 	\end{exampleblock}
 \end{frame}
 
@@ -590,21 +821,6 @@
 			\caption{$P$ is a regular pyramid}
 		\end{figure}
 	\end{example}
-\end{frame}
-
-\begin{frame}{The \textsc{Simplex} Algorithm}
-	\begin{example}{A linear OP example}
-		content...
-	\end{example}
-\end{frame}
-
-\begin{frame}{Sources}
-	\footnotesize
-	\begin{thebibliography}{9}
-		\bibitem{VEPhard} 
-			L. Khachiyan, E. Boros, K. Borys, K. Elbassioni, and V. Gurvich. Generating all verticesof a polyhedron is hard.Discrete and Computational Geometry, 39(1):174–190, 2008.
-		
-	\end{thebibliography}
 \end{frame}
 
 \end{document}
