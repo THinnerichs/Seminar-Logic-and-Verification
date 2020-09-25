@@ -1,0 +1,154 @@
+\documentclass[a4paper, 11pt]{article}
+% For UTF-8 encoding
+\usepackage[utf8]{inputenc}
+% For proper hyphenation etc.
+\usepackage{babel}
+% For clickable links
+\usepackage{hyperref}
+% Set page margins
+\usepackage[top=2cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{calc,shadings}
+\usetikzlibrary{positioning}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{algorithm,algorithmic}
+
+%Definitions
+\newtheorem{mydef}{Definition}
+\newtheorem{anmerkung}{Anmerkung}
+\newtheorem{beispiel}{Beispiel}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Korollar}
+\newtheorem{satz}{Satz}
+
+\makeatletter
+\renewenvironment{quotation}
+{\list{}{\listparindent=1.5em
+		\itemindent=0pt
+		\parsep\z@ \@plus\p@}%
+	\item\relax}
+{\endlist}
+\makeatother
+
+\newenvironment{customlegend}[1][]{%
+	\begingroup
+	% inits/clears the lists (which might be populated from previous
+	% axes):
+	\csname pgfplots@init@cleared@structures\endcsname
+	\pgfplotsset{#1}%
+}{%
+	% draws the legend:
+	\csname pgfplots@createlegend\endcsname
+	\endgroup
+}%
+
+%definitions
+\def\addlegendimage{\csname pgfplots@addlegendimage\endcsname}
+% definition to insert numbers
+\pgfkeys{/pgfplots/number in legend/.style={%
+		/pgfplots/legend image code/.code={%
+			\node at (0.295,-0.0225){#1};
+		},%
+	},
+}
+
+
+%opening
+%\title{	Proseminar \glqq Theoretische Informatik\grqq{}\\
+%		Lineare Optimierungsprobleme und deren Lösung mit Hilfe des \textsc{Simplex}-Verfahrens}
+%\author{Tilman Hinnerichs}
+%\date{Sommersemester 2018}
+
+\usepackage{fancyhdr}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+%-------------------------------------------------------------------------------
+% TITLE PAGE
+%-------------------------------------------------------------------------------
+
+\begin{document}
+	
+	\title{ \normalsize \textsc{Seminar: Selected Topics in Logic and Verification }
+		\\ [2.0cm]
+		\HRule{0.5pt} \\
+		\LARGE \textbf{\uppercase{A Summary on:\\
+			A Pivoting Algorithm for Convex Hulls and Vertex Enumeration of Arrangements and Polyhedra}
+		\HRule{1pt} \\ [0.5cm]
+		\normalsize \today \vspace*{5\baselineskip}}
+	
+	\date{Summer semester 2020}
+	
+	\author{
+		Tilman Hinnerichs \\
+		Matrikelnummer: 4643427 \\ 
+		Technische Universität Dresden\vspace{1cm}\\
+		Tutor: Dr. Florian Funke }}
+\maketitle
+\newpage
+\begin{abstract}
+	Test
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\begin{itemize}
+	\item What audience? students with simple to no prior knowledge
+	\item Don't just formulate presentation in words $\rightarrow$ add more stuff from paper
+	\item add facet enumeration
+	\item future work $\rightarrow$ paper citing this paper
+	\item rewrite their definitions with yours for extra points
+	\item add some of the theorems from the Simplex summary
+\end{itemize}
+
+\section{Polyhedra and Arrangements}
+
+\section{The Vertex Enumeration Problem}
+Definition of problem\\
+introduction by example
+\subsection{Duality to the Facet enumeration problem}
+see what is written in Avis paper and copy it
+
+\subsection{Types of approaches}
+Motzkin vs Pivot based methods
+
+\section{Simplex algorithm}
+\subsection{Linear programs}
+\subsection{The \textsc{Simplex}-Algorithm}
+\begin{itemize}
+	\item what does is do?
+	\item How does it work
+	\item why does it work? $\rightarrow$ translate some stuff from last presentation
+\end{itemize}
+
+\section{Avis and Fukudas Algorithm}
+\subsection{How to move up the tree?}
+Bland's rule and Criss-Cross rule
+\subsection{What is it even doing?}
+\subsection{Degeneracy}
+with visual example from presentation
+\subsection{Why is that good?}
+Complexity
+
+\section{Future Work based on this }
+%body
+
+\newpage
+
+\begin{thebibliography}{9}
+	\bibitem{introtoAlg} 
+	Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest und Clifford Stein.
+	\textit{Introduction to Algorithms}. Third Edition. The MIT Press, 2009.
+\end{thebibliography}
+
+
+\end{document}

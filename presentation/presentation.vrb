@@ -1,0 +1,40 @@
+\frametitle{}
+\begin{exampleblock}{Another example}
+	\begin{tabular}{rrrrrrrrrr}
+		&$ -z $&$=$& $-30x_1$ &$-$&$45x_2$ &$\rightarrow$& \textbf{$min$}&& \\
+		\\
+		with&$\cellcolor{cyan}x_3$&$=$&$-4x_1$ &$-$&$3x_2$&$+$&$100$&&\\
+		&\cellcolor{cyan}$x_4$&$=$&$-x_1$ & $-$&$2x_2$&$+$&$50$&&\\
+		&$x_3,x_4$&,&\cellcolor{orange}$x_1$ &, &\cellcolor{orange}$x_2$&$\geq$&$0$
+	\end{tabular} \\
+	\vspace{0.5cm}
+	\begin{tabular}{ll}
+		\cellcolor{orange}\textcolor{orange}{aaa} & non-basic variables, with indices $N = \{1,2\}, |N| = n$\\
+		\cellcolor{cyan}\textcolor{cyan}{aaa}& basic variables, with indices $B = \{3, 4\}, |B| = m$
+	\end{tabular}\\
+
+	\vspace{0.5cm}
+	\textsc{Simplex}-Tableau: %\hspace{1cm}
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{r|rr|r}
+		$ST_0$&$x_1$&$x_2$&$1$\\
+		\hline
+		$x_3=$&$-4$&$-3$&$100$\\
+		$x_4=$&$-1$&$-2$&$50$\\
+		\hline
+		$-z=$&$-30$&$-45$&$0$
+	\end{tabular}
+	\endgroup
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{r|r|r}
+		$ST_0$&$x_N$&$1$\\
+		\hline
+		$x_B=$&$M$&$p$\\
+		&&\\
+		\hline
+		$z=$&$q^T$&$q_0$
+	\end{tabular}
+	\endgroup
+	\end{exampleblock}
