@@ -1,13 +1,14 @@
-\BOOKMARK [1][-]{section.1}{Polyhedra and Arrangements}{}% 1
-\BOOKMARK [1][-]{section.2}{The Vertex Enumeration Problem}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Duality to the Facet enumeration problem}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Types of approaches}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Simplex algorithm}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Linear programs}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{The Simplex-Algorithm}{section.3}% 7
-\BOOKMARK [1][-]{section.4}{Avis and Fukudas Algorithm}{}% 8
-\BOOKMARK [2][-]{subsection.4.1}{How to move up the tree?}{section.4}% 9
-\BOOKMARK [2][-]{subsection.4.2}{What is it even doing?}{section.4}% 10
-\BOOKMARK [2][-]{subsection.4.3}{Degeneracy}{section.4}% 11
-\BOOKMARK [2][-]{subsection.4.4}{Why is that good?}{section.4}% 12
-\BOOKMARK [1][-]{section.5}{Future Work based on this }{}% 13
+\BOOKMARK [1][-]{section.1}{General remarks on the paper}{}% 1
+\BOOKMARK [1][-]{section.2}{Polyhedra and Arrangements}{}% 2
+\BOOKMARK [1][-]{section.3}{The Vertex Enumeration Problem}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Definition and general remarks}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Types of approaches}{section.3}% 5
+\BOOKMARK [1][-]{section.4}{Simplex algorithm}{}% 6
+\BOOKMARK [2][-]{subsection.4.1}{Linear programs}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.2}{The Simplex-Algorithm}{section.4}% 8
+\BOOKMARK [1][-]{section.5}{Avis and Fukudas Algorithm}{}% 9
+\BOOKMARK [2][-]{subsection.5.1}{How to move up the tree?}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.2}{What is it even doing?}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.3}{Degeneracy}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.4}{Why is that good?}{section.5}% 13
+\BOOKMARK [1][-]{section.6}{Future Work based on this }{}% 14

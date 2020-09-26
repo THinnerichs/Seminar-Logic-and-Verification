@@ -19,11 +19,11 @@
 
 %Definitions
 \newtheorem{mydef}{Definition}
-\newtheorem{anmerkung}{Anmerkung}
-\newtheorem{beispiel}{Beispiel}
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
 \newtheorem{lemma}{Lemma}
 \newtheorem{theorem}{Theorem}
-\newtheorem{corollary}{Korollar}
+\newtheorem{corollary}{Corollary}
 \newtheorem{satz}{Satz}
 
 \makeatletter
@@ -94,7 +94,7 @@
 \maketitle
 \newpage
 \begin{abstract}
-	Test
+	
 \end{abstract}
 
 \tableofcontents
@@ -110,16 +110,118 @@
 	\item add some of the theorems from the Simplex summary
 \end{itemize}
 
+This is a summary of the approach from Avis and Fukuda to the Vertex Enumeration problem mollified with various references to basic concepts such as the \textsc{Simplex} algorithm.  
+
+\section{General remarks on the paper}
+The paper \glqq A Pivoting Algorithm for Convex Hulls and Vertex Enumeration of Arrangements and Polyhedra\grqq{} was written by David Avis and Komei Fukuda. It was published in 1992 in the journal \glqq Discrete \& Computational Geometry\grqq{} and is regarded as one of the most cited papers in this very field with a number of 751 citations (as of 26.09.2020, according to Google Scholar). As a non-book, non-survey paper publication in such a specific field of research, this can be considered a fairly high amount of citations. 
+
 \section{Polyhedra and Arrangements}
+In this first section we will introduce the needed notations and basics for the Vertex Enumeration Problem (VEP). At first, we will have to clarify the terms and concepts of the \textit{vertex} and \textit{polyhedra}.
+
+\begin{mydef}(Polyhedron)\\
+	Given a matrix $A=(a_{ij}) \in \mathbb{R}^{m\times n}$ and a vector $b \in \mathbb{R}^m$.\\
+	
+	A \textit{convex polyhedron} $P$ is defined as
+	\begin{equation}
+		P = \{ x\in \mathbb{R}^n: Ax+b\geq 0 \}
+	\end{equation}
+\end{mydef}
+\begin{remark}
+	
+	In general, this is the definition of a polytope, as polyhedra are the 3-dimensional special case of a polytope. As Avis and Fukuda use these terms interchangeably, we will do so as well in the following. 
+\end{remark}
+
+This definition states that the set of points is constrained by a set of $m$ linear inequalities with $n$ that are basically hyperplanes in the \textit{n} dimensional space. In the following we will abbreviate a \textit{convex polyhedron} simply as a \textit{polyhedron}. \\
+
+An \textit{arrangement of hyperplanes} or \textit{arrangement} for short, is a decomposition of the given underlying space using a set of hyperplanes/ linear inequalities. As both concepts are fairly similar, we will not explicitly list \textit{arrangements} in every definition, as every following statement holds for both polyhedra and arrangements. If that is not the case, arrangements will be named separately.\\
+
+As the convex property is crucial for this approach to work, we will define it using convex combinations.
+\begin{mydef}(Convex combination)\\
+	
+	Let $x_1, x_2, \dots, x_n$ be a finite set of points. A convex combination is a point of the form 
+	\begin{equation*}
+		y = a_1x_1 + a_2x_2 + \dots + a_nx_n
+	\end{equation*}
+	while $a_1, \dots, a_n\in\mathbb{R^+}$, and
+	\begin{equation*}
+		a_1 + \dots + a_n = 1
+	\end{equation*}
+	
+	A convex combination is a linear combination.
+\end{mydef}
+Based on this definition we can further describe the constraints to our polyhedra and arrangements.
+\begin{mydef}
+	A set is called \textit{convex} if it contains all convex combinations of its points.
+\end{mydef}
+As a polytope is in fact a set of points, too, this also applies to the polyhedra and arrangements.
+\begin{mydef}
+	For a given set of points, the convex hull is the set set of all convex combinations of these points.
+\end{mydef}
+
+In order to fully understand the last part of the title we additionally have to clarify the term \textit{vertex}, which we do by the following definition.
+
+\begin{mydef}(Vertex)\\
+	A point $v\in P$ is called a \textit{vertex} of any set $P$ \textbf{iff} there are no two other points $a,b\in P$ such that
+	\begin{equation}
+		v=\lambda_1 a + \lambda_2 b
+	\end{equation}
+	which is also called a \textit{convex combination} of $a,b$.
+\end{mydef}
+
+In order to make this definition a little more specific with regard to the definition of a polahedron, we will introduce our first corollary.
+
+\begin{corollary}\cite{introtoAlg}\\
+	A point $v\in P$ is a \textit{vertex} of $P$ \textbf{iff} it is the unique solution to a subset of $m$ inequalities solved as equations. 
+\end{corollary}
 
 \section{The Vertex Enumeration Problem}
-Definition of problem\\
-introduction by example
-\subsection{Duality to the Facet enumeration problem}
-see what is written in Avis paper and copy it
+\subsection{Definition and general remarks}
+We are now ready to introduce the VEP itself with the following definition.
+\begin{mydef}(Vertex Enumeration Problem)\\
+	For a given polytope/polyhedron or hyperplane arrangement $P$ determine all vertices of the object given its formal representation. 
+\end{mydef}
+
+\begin{theorem}(Complexity of the VEP)\\
+	The VEP is NP-hard for unbounded polyhedra.\cite{Khachiyan}
+\end{theorem}
+
+
+The VEP is dual to the \textit{Facet Enumeration problem}(FEP), that is finding all facets of a convex hull for a given set of points. The solution to the dual problem also yields the solution to the primal problem, too. We will introduce the term of duality in the following chapter.\\
+
+While these recent definitions lack the ability to intrinsically motivate the applicability of this very problem, we will introduce a fairly simple example, which was taken and simplified from Avis' lecture notes.
+\begin{example}(All meals for 1 Euro)\\
+	Lets assume you are on a diet and additionally quite poor or minimalistic. Thus, you would like to plan your future meals, such that they only contain 3 different ingredients. Additionally, we would love to have sufficient nutrition intake, where we will only consider energy, protein and calcium intake.\\
+	Our decision is also constrained by the fact that we will only have 1 Euro per day, and can also endure just up to a certain amount of each ingredient, in order not just eat dry oatmeal all day long.\\
+	The values describing our problem are given in the following table:\\
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{|p{0.5cm}|l|p{2cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{2cm}|}
+		\hline
+		Var&Food type&Energy (kcal/100g)&Protein (g)&Calcium (mg)&Price (Euro cents)&Maximum\\
+		\hline
+		$x_1$&Oatmeal\footnote{Regular LIDL oatmeal}&250&15&40&10&500g\\
+		$x_2$&Milk\footnote{Regular Bio LIDL milk}&80&4&130&4&1000g\\
+		$x_3$&DD Stollen\footnote{https://fddb.info}&340&7&30&20&200g\\
+		\hline
+		&\textbf{Min. daily}&\textbf{2000}&\textbf{55}&\textbf{800}&&\\
+		\hline
+	\end{tabular}
+	\endgroup\\
+	
+	The variables $x_1, x_2, x_3$ each denote the amount of each ingredient in 100g.
+\end{example}
+Before discussing the example, we have to define the term \textit{convex combination}
+
+
+
+By solving the VEP, we yield all vertices of the corresponding polyhedron, that is all points that cannot be written as convex combinations of two other points. Inverting this very statement, all other points within $P$ are convex combinations of at least two other points. More specifically we are able to rewrite each point within $P$ as convex combinations of vertices of $P$. Thus, if we find all vertices of the given arrangement of linear inequalities, we can produce infinitely many food combinations by randomly choosing a convex combinations of the given vertices. However, we still have to find these vertices.
 
 \subsection{Types of approaches}
-Motzkin vs Pivot based methods
+In history there have been various approaches to the VEP, that can be classified into two categories. First, there are the so called \textit{Pivot based} methods, where this very method can be placed, too. These methods rely on traversing along the vertices using so called \textsc{Simplex} tableaus, which we will introduce in the following chapter. These approaches are mostly based on solving corresponding linear optimization problems.\\
+
+The other method is called \textit{Fourier-Motzkin} or \textit{double description} method\cite{Motzkin}. These methods yield the vertices by successively adding hyperplanes and keeping track of the remaining possible vertices. The double description method in fact solves the dual problem of FEP. \\
+
+While this classification was made in 1992 within this very publication, there haven't been exceptions to this ever since. We will discuss this fact in the last chapter.
 
 \section{Simplex algorithm}
 \subsection{Linear programs}
@@ -148,6 +250,13 @@ Complexity
 	\bibitem{introtoAlg} 
 	Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest und Clifford Stein.
 	\textit{Introduction to Algorithms}. Third Edition. The MIT Press, 2009.
+	\bibitem{Khachiyan}
+	L. Khachiyan, E. Boros, K. Borys, K. Elbassioni, and V. Gurvich. Generating all
+	verticesof a polyhedron is hard.Discrete and Computational Geometry,
+	39(1):174–190, 2008.
+	\bibitem{Motzkin}
+	T. S. Motzkin, H. Raiffa, G. L. Thompson, and R. M. Thrall, The Double Description Method,
+	Annals of Mathematical Studies, vol. 8, Princeton University Press, Princeton, N J, 1953.
 \end{thebibliography}
 
 
