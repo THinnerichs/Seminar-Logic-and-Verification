@@ -3,12 +3,13 @@
 \BOOKMARK [1][-]{section.3}{The Vertex Enumeration Problem}{}% 3
 \BOOKMARK [2][-]{subsection.3.1}{Definition and general remarks}{section.3}% 4
 \BOOKMARK [2][-]{subsection.3.2}{Types of approaches}{section.3}% 5
-\BOOKMARK [1][-]{section.4}{Simplex algorithm}{}% 6
-\BOOKMARK [2][-]{subsection.4.1}{Linear programs}{section.4}% 7
-\BOOKMARK [2][-]{subsection.4.2}{The Simplex-Algorithm}{section.4}% 8
-\BOOKMARK [1][-]{section.5}{Avis and Fukudas Algorithm}{}% 9
-\BOOKMARK [2][-]{subsection.5.1}{How to move up the tree?}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.2}{What is it even doing?}{section.5}% 11
-\BOOKMARK [2][-]{subsection.5.3}{Degeneracy}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.4}{Why is that good?}{section.5}% 13
-\BOOKMARK [1][-]{section.6}{Future Work based on this }{}% 14
+\BOOKMARK [1][-]{section.4}{Linear Programs}{}% 6
+\BOOKMARK [1][-]{section.5}{Simplex algorithm}{}% 7
+\BOOKMARK [2][-]{subsection.5.1}{Linear programs}{section.5}% 8
+\BOOKMARK [2][-]{subsection.5.2}{The Simplex-Algorithm}{section.5}% 9
+\BOOKMARK [1][-]{section.6}{Avis and Fukudas Algorithm}{}% 10
+\BOOKMARK [2][-]{subsection.6.1}{How to move up the tree?}{section.6}% 11
+\BOOKMARK [2][-]{subsection.6.2}{What is it even doing?}{section.6}% 12
+\BOOKMARK [2][-]{subsection.6.3}{Degeneracy}{section.6}% 13
+\BOOKMARK [2][-]{subsection.6.4}{Why is that good?}{section.6}% 14
+\BOOKMARK [1][-]{section.7}{Future Work based on this }{}% 15
