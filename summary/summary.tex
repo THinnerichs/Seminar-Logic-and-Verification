@@ -121,9 +121,9 @@ In this first section we will introduce the needed notations and basics for the 
 \begin{mydef}(Polyhedron)\\
 	Given a matrix $A=(a_{ij}) \in \mathbb{R}^{m\times n}$ and a vector $b \in \mathbb{R}^m$.\\
 	
-	A \textit{convex polyhedron} $P$ is defined as
+	A \textit{convex polyhedron} $G$ is defined as
 	\begin{equation}
-		P = \{ x\in \mathbb{R}^n: Ax+b\geq 0 \}
+		G = \{ x\in \mathbb{R}^n: Ax+b\geq 0 \}
 	\end{equation}
 \end{mydef}
 \begin{remark}
@@ -161,7 +161,7 @@ As a polytope is in fact a set of points, too, this also applies to the polyhedr
 In order to fully understand the last part of the title we additionally have to clarify the term \textit{vertex}, which we do by the following definition.
 
 \begin{mydef}(Vertex)\\
-	A point $v\in P$ is called a \textit{vertex} of any set $P$ \textbf{iff} there are no two other points $a,b\in P$ such that
+	A point $v\in G$ is called a \textit{vertex} of any set $G$ \textbf{iff} there are no two other points $a,b\in G$ such that
 	\begin{equation}
 		v=\lambda_1 a + \lambda_2 b
 	\end{equation}
@@ -170,15 +170,15 @@ In order to fully understand the last part of the title we additionally have to 
 
 In order to make this definition a little more specific with regard to the definition of a polahedron, we will introduce our first corollary.
 
-\begin{corollary}\cite{introtoAlg}\\
-	A point $v\in P$ is a \textit{vertex} of $P$ \textbf{iff} it is the unique solution to a subset of $m$ inequalities solved as equations. 
+\begin{corollary}\label{corollary1}\cite{introtoAlg}\\
+	A point $v\in G$ is a \textit{vertex} of $G$ \textbf{iff} it is the unique solution to a subset of $m$ inequalities solved as equations. 
 \end{corollary}
 
 \section{The Vertex Enumeration Problem}
 \subsection{Definition and general remarks}
 We are now ready to introduce the VEP itself with the following definition.
 \begin{mydef}(Vertex Enumeration Problem)\\
-	For a given polytope/polyhedron or hyperplane arrangement $P$ determine all vertices of the object given its formal representation. 
+	For a given polytope/polyhedron or hyperplane arrangement $G$ determine all vertices of the object given its formal representation. 
 \end{mydef}
 
 \begin{theorem}(Complexity of the VEP)\\
@@ -221,6 +221,7 @@ The other method is called \textit{Fourier-Motzkin} or \textit{double descriptio
 While this classification was made in 1992 within this very publication, there haven't been exceptions to this ever since. We will discuss this in more detail in the last chapter.
 
 \section{Linear Programs}
+\subsection{What is a Linear Optimization Problem?}
 While linear optimization problems are in general not necessary in order to solve the VEP with a pivot based method, it was utilized for this very approach. Additionally it gives us the chance to discuss and introduce some definitions and theorems that underline its simplicity and effectiveness. In the following we will use the terms \textit{linear program}(LP) and \textit{linear optimization problem} interchangeably.\\
 
 \begin{mydef}
@@ -241,12 +242,13 @@ Furthermore, we are able to bring in a statement about the \textit{standard form
 		\label{standardform}
 		z = f(x) = c^T \cdot x \rightarrow min \hspace{1cm} bei\ x \in G:=\{x \in \mathbb{R}^n: Ax \geq b, x \geq 0\}
 	\end{equation}
-	with $A\in \mathbb{R}^{m\times n}$, $b\in\mathbb{R}^m$, $x\geq 0$. Additionally, let $rg(A)=m$ and $m< n$.\\
+	with $A\in \mathbb{R}^{m\times n}$, $b\in\mathbb{R}^m$, $x\geq 0$. Additionally, let $rank(A)=m$ and $m< n$.\\
 	We call this form the \textit{standard form}.
 \end{corollary}
 The finite dimensionality is expressed with regard to the amount of variables, and thus the width of both objective function and coefficient matrix. \\
 
 Hereby, the notation $x\geq0$ with $x\in \mathbb{R}$ describes the expression $x_j\geq 0$ for every $j=1,2,\dots,n$.\\ 
+Please note that we naturally do not have any objective function in the original VEP formulation. For now, lets assume that we do have a any linear objective function $f$ given. We will discuss this issue in further detail later on.\\
 After this quick introduction into the field of linear programs, we will now explore their solutions and the existence of those. We will use the following terminology.
 
 \begin{mydef}
@@ -258,12 +260,109 @@ After this quick introduction into the field of linear programs, we will now exp
 			$\bar{z} = f(\bar{x}) \leq z = f(x)$ for all $x\in G$
 		\end{quotation}
 	\end{itemize}
-	If a linear program has a feasible solution but no optimal one, we will call this LP unbounded.
+	If a linear program has a feasible solution but no optimal one, we will call t his LP unbounded.
 \end{mydef}
 
+\subsection{Duality of LP}
+Linear programs can be reformulated, by basically \glqq swapping\grqq{} the coefficient matrix, therefor introducing new variables and reformulating the linear inequalities. We will not go into further details here, as we are just interested in the yielded results. At first glance, the original or \textit{primal} inequality system and its dual formulation have not that much in common, but in fact they share and mutually propagate many interesting properties. \\
+
+The first property to be mentioned here is their reciprocal bound, as the weak duality theorem states.
+\begin{theorem}(Weak Duality Theorem)\\
+	Given 
+	\begin{itemize}
+		\item a primal LP $(P)$ defined by $c^T\cdot x \rightarrow \min$ with $Ax\geq b, x\geq 0$, and
+		\item its dual LP $(D)$ defined by $b^T\cdot u \rightarrow \max$ with $A^Tu\leq c, u\geq 0$.
+	\end{itemize} 
+	Let $x$ be feasible for $(P)$ and $u$ feasible for $(D)$. Then
+	\begin{equation*}
+		b^T\cdot u \leq c^T\cdot x
+	\end{equation*}
+	holds.
+\end{theorem}
+This law states, that any feasible solution of $(P)$ will always be larger or equal to any feasible solution of $(D)$.\\
+We can proof an even stricter bound for both LPs.
+\begin{theorem}(Strong Duality Theorem)\\
+	The LP $(P)$ is solvable iff its dual LP $(D)$ is solvable. For an optimal solution $\bar{x}$ of $(P)$ and $\bar{u}$ of $(D)$
+	\begin{equation*}
+		b^T\cdot \bar{u}= c^T\cdot \bar{x}
+	\end{equation*}
+	holds, i.e. equality of the optimal solutions.
+\end{theorem}
+
+These theorems will help us better understand the eventual algorithm and its feasibility.
 
 \section{Simplex algorithm}
-\subsection{Linear programs}
+\subsection{Calculating a first Simplex tableau from the Standard Form}
+Before we are able to start applying the Simplex algorithm to a LP we need to transform it to a viable form for the procedure. Thus, we will transform a LP in the standard form into a so called \textit{Simplex tableau}. 
+\begin{mydef}(Simplex tableau)\\
+	A LP of the form
+	\begin{equation}
+		\label{tableau definition}
+		z = f'(x') = c'^T \cdot x' \rightarrow min
+		\hspace{1cm} \text{with}\ x' \in G':=\{ x' \in \mathbb{R}^{n+m}: A'x' = b, x' \geq 0\}
+	\end{equation}
+	\begin{quotation}
+		\begin{tabular}{rl}
+			with &$ A'\in \mathbb{R}^{m\times (m+n)} $\\
+			&$ b\in \mathbb{R}^m $
+		\end{tabular}
+	\end{quotation}
+	is called a \emph{Simplex tableau}.
+\end{mydef}
+
+In contrast to the standard form the feasible space is now restricted by linear equations rather than inequalities. Additionally the dimensionality of $x'$ has changed to $m+n$. These rather absurd looking changes are motivated by introducing so called \textit{slack variables} or \textit{pivot elements} that are added to the smaller side of the inequality. We thus introduce a new variable $s\geq 0$ for each inequality that describes the difference of both sides. For example we can transform the inequality $x\leq y$ to the equation $x + s=y$. This new equation is equivalent in meaning to its predecessor inequality.\\
+
+\begin{example}
+	As our introductory example is way too large to efficiently show the power of the Simplex algorithm, we will reduce this problem to two variables and two new inequalities as listed below. This is already given in standard form.\\
+	
+	\begin{equation}
+		\begin{tabular}{rrrrrrr}
+			$ -z $&$=$& $-30a$ &$- $&$45b$ &$\rightarrow$& $\textbf{min}$ \\
+			\\
+			bei&&$4a$ &$+$&$3b$&$\leq$&$100$\\
+			&&$a$ & $+$&$2b$&$\leq$&$50$\\
+			&&$a$ & ,&$b$ &$\geq$&$0$
+		\end{tabular}
+	\end{equation}
+	Which we will now transform to a Simplex tableau.
+	\begin{equation}
+		\begin{tabular}{rrrrrrrrr}
+			$ -z $&$=$& $-30x_1$ &$-$&$45x_2$ &$\rightarrow$& \textbf{$min$}&& \vspace{0.15cm}\\
+			with &&$-4x_1$ &$-$&$3x_2$&$=$&$-100$&$+$&$s_1$\\
+			&&$-x_1$ & $-$&$2x_2$&$=$&$-50$&$+$&$s_2$\\
+			&&$x_1$ &, &$x_2$&$\geq$&$0$ &,&$s_1, s_2 \geq 0$
+		\end{tabular}
+	\end{equation}
+
+	From now on we will also rename $s_1,s_2$ to $x_3, x_4$.
+	\begin{equation}
+		\begin{tabular}{rrrrrrrrr}
+			$ -z $&$=$& $-30x_1$ &$-$&$45x_2$ &$\rightarrow$& \textbf{$min$}&& \vspace{0.15cm}\\
+			with &&$-4x_1$ &$-$&$3x_2$&$=$&$-100$&$+$&$x_3$\\
+			&&$-x_1$ & $-$&$2x_2$&$=$&$-50$&$+$&$x_4$\\
+			&&$x_1$ &, &$x_2$&$\geq$&$0$ &,&$x_3, x_4 \geq 0$
+		\end{tabular}
+	\end{equation}
+\end{example}
+
+At this stage we will introduce the terms \textit{basic solution} and \textit{basic variables}. Let $I=\{1,\dots,m+n\}$ be the index set denoting the given indices in the Simplex tableau. As $rank(A)=m$ holds, $rank(A')=m$ follows, and therefor there has to be subset $I_B \subset I$ with $|I_B| = m$, such that the columns $A^i, i\in I_B$ with $A^i$ denoting the $i$-th column, are linearly independent. We hence denote $I_B$ as the \textit{basis index set} describing the \textit{basic variables} $x_B$, and the \textit{non-basis index set} $I_N=I\backslash I_B$ describing the \textit{non-basic variables} $x_N$.\\
+
+A basic solution is defined with respect to the given equation system as a unique solution to a subset of $m$ inequalities solved as equations. This definition is similar to the characterization of corollary \ref{corollary1}. In fact, this corollary is derived from the identity of basic solutions and vertex, which shall not discussed further. Thus, we will now use these terms interchangeably. 
+
+\subsection{The Simplex Algorithm}
+The Simplex algorithm can be divided into two phases.
+\begin{algorithm}[H]
+	\caption{The \textsc{Simplex} algorithm}
+	\label{alg:seq}
+	\begin{algorithmic}[1]
+		\STATE Determine a first feasible solution (vertex)
+		\STATE Determine the optimal solution
+	\end{algorithmic}
+\end{algorithm}
+
+The algorithm starts by determining a first feasible solution, which is a vertex of our feasible polytope and thus a basic solution. It then iterates over all vertices in the feasible direction of the objective function.
+
+
 \subsection{The \textsc{Simplex}-Algorithm}
 \begin{itemize}
 	\item what does is do?
