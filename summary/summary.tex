@@ -240,7 +240,7 @@ Furthermore, we are able to bring in a statement about the \textit{standard form
 	All finite dim. linear optimization problems can be written in the following form:\\
 	\begin{equation}
 		\label{standardform}
-		z = f(x) = c^T \cdot x \rightarrow min \hspace{1cm} bei\ x \in G:=\{x \in \mathbb{R}^n: Ax \geq b, x \geq 0\}
+		z = f(x) = c^T \cdot x \rightarrow min \hspace{1cm} with\ x \in G:=\{x \in \mathbb{R}^n: Ax \geq b, x \geq 0\}
 	\end{equation}
 	with $A\in \mathbb{R}^{m\times n}$, $b\in\mathbb{R}^m$, $x\geq 0$. Additionally, let $rank(A)=m$ and $m< n$.\\
 	We call this form the \textit{standard form}.
@@ -310,7 +310,7 @@ Before we are able to start applying the Simplex algorithm to a LP we need to tr
 	is called a \emph{Simplex tableau}.
 \end{mydef}
 
-In contrast to the standard form the feasible space is now restricted by linear equations rather than inequalities. Additionally the dimensionality of $x'$ has changed to $m+n$. These rather absurd looking changes are motivated by introducing so called \textit{slack variables} or \textit{pivot elements} that are added to the smaller side of the inequality. We thus introduce a new variable $s\geq 0$ for each inequality that describes the difference of both sides. For example we can transform the inequality $x\leq y$ to the equation $x + s=y$. This new equation is equivalent in meaning to its predecessor inequality.\\
+In contrast to the standard form the feasible space is now restricted by linear equations rather than inequalities. Additionally the dimensionality of $x'$ has changed to $m+n$. These rather absurd looking changes are motivated by introducing so called \textit{slack variables} that are added to the smaller side of the inequality. We thus introduce a new variable $s\geq 0$ for each inequality that describes the difference of both sides. For example we can transform the inequality $x\leq y$ to the equation $x + s=y$. This new equation is equivalent in meaning to its predecessor inequality.\\
 
 \begin{example}
 	As our introductory example is way too large to efficiently show the power of the Simplex algorithm, we will reduce this problem to two variables and two new inequalities as listed below. This is already given in standard form.\\
@@ -319,7 +319,7 @@ In contrast to the standard form the feasible space is now restricted by linear 
 		\begin{tabular}{rrrrrrr}
 			$ -z $&$=$& $-30a$ &$- $&$45b$ &$\rightarrow$& $\textbf{min}$ \\
 			\\
-			bei&&$4a$ &$+$&$3b$&$\leq$&$100$\\
+			with&&$4a$ &$+$&$3b$&$\leq$&$100$\\
 			&&$a$ & $+$&$2b$&$\leq$&$50$\\
 			&&$a$ & ,&$b$ &$\geq$&$0$
 		\end{tabular}
@@ -347,7 +347,7 @@ In contrast to the standard form the feasible space is now restricted by linear 
 
 At this stage we will introduce the terms \textit{basic solution} and \textit{basic variables}. Let $I=\{1,\dots,m+n\}$ be the index set denoting the given indices in the Simplex tableau. As $rank(A)=m$ holds, $rank(A')=m$ follows, and therefor there has to be subset $I_B \subset I$ with $|I_B| = m$, such that the columns $A^i, i\in I_B$ with $A^i$ denoting the $i$-th column, are linearly independent. We hence denote $I_B$ as the \textit{basis index set} describing the \textit{basic variables} $x_B$, and the \textit{non-basis index set} $I_N=I\backslash I_B$ describing the \textit{non-basic variables} $x_N$.\\
 
-A basic solution is defined with respect to the given equation system as a unique solution to a subset of $m$ inequalities solved as equations. This definition is similar to the characterization of corollary \ref{corollary1}. In fact, this corollary is derived from the identity of basic solutions and vertex, which shall not discussed further. Thus, we will now use these terms interchangeably. 
+A basic solution is defined with respect to the given equation system as a unique solution to a subset of $m$ inequalities solved as equations. This definition is similar to the characterization of corollary \ref{corollary1}. In fact, this corollary is derived from the relation of basic solutions and vertex, such that each vertex has at least one basic solution. Thus, we will now use these terms interchangeably.
 
 \subsection{The Simplex Algorithm}
 The Simplex algorithm can be divided into two phases.
@@ -361,6 +361,201 @@ The Simplex algorithm can be divided into two phases.
 \end{algorithm}
 
 The algorithm starts by determining a first feasible solution, which is a vertex of our feasible polytope and thus a basic solution. It then iterates over all vertices in the feasible direction of the objective function.
+
+\begin{lemma}
+	If $G'\neq\emptyset$, then $G'$ has at least one vertex and at most finitely many vertices.
+\end{lemma}
+
+Thus, we should be able to find a first feasible basic solution.
+
+
+
+\subsubsection{Phase 1: Determine a first feasible solution (vertex)}
+Finding a first can be both really easy and hard. In general a first basic solution can be obtained by 
+\begin{equation*}
+	x' \longleftrightarrow 
+	\left( \begin{array}{c}
+		x_B \\ x_N
+	\end{array}\right) = \left(\begin{array}{c}
+		p \\ 0
+	\end{array}\right) = \left(\begin{array}{c}
+		A_B^{-1}\cdot b \\ 0
+	\end{array}\right)
+\end{equation*}
+thus setting $x_N=0$ and $x_B=p$, if that solution is feasible. However, if that is not the case, we can formulate a aid LP, given by
+\begin{equation}
+	\label{hilfsproblem}
+	\begin{tabular}{cl}
+		&$h = e^T\cdot y \rightarrow min$\vspace{0.25cm}\\
+		with&$y+Ax = b$,\\
+		&$x, y\geq 0,$\\
+		&$x\in \mathbb{R}^{(m+n)}, y\in\mathbb{R}^m$\\
+		&$e= (1,\dots,1)^T\in\mathbb{R}^m$
+	\end{tabular}
+\end{equation}
+through which we can always find a feasible basic solution if there exists one.\\
+In the case of our example problem there exists a basic solution 
+\begin{equation*}
+	x' = \left(\begin{array}{c}
+		x_1\\x_2\\x_3\\x_4
+	\end{array}\right) = \left(\begin{array}{c}
+		0\\0\\100\\50
+	\end{array}\right)
+\end{equation*}
+
+Additionally, we can rewrite our equation system in the following form
+\begin{equation*}
+	\begin{tabular}{r|rr|r}
+		$ST_0$&$x_1$&$x_2$&$1$\\
+		\hline
+		$x_3=$&$-4$&$-3$&$100$\\
+		$x_4=$&$-1$&$-2$&$50$\\
+		\hline
+		$-z=$&$-30$&$-45$&$0$
+	\end{tabular}
+\end{equation*}
+or in general for all LPs in form of a Simplex tableau
+\begin{equation}
+	\begin{tabular}{r|r|r}
+		$ST_0$&$x_N$&$1$\\
+		\hline
+		$x_B=$&$P$&$p$\\
+		&&\\
+		\hline
+		$z=$&$q^T$&$q_0$
+	\end{tabular}
+\end{equation}
+as we rename all variables for the upcoming Simplex algorithm steps. We will always have the non-basic variables on top and the basic variables on the left. As we found our first feasible solution we are ready for the second phase.
+
+\subsubsection{Phase 2: Determine the optimal solution}
+
+For each step of the algorithm we first determine a so called \textit{Pivot element} $P_{\sigma\tau}$ by finding the column $\tau\in I_N$ chosen randomly, and the row $\sigma\in I_B$, which is determined by
+\begin{equation}
+	- \dfrac{p_\sigma}{P_{\sigma\tau}} := \min \left\{ -\frac{p_i}{P_{i\tau}}\ \middle|\ -\frac{p_i}{P_{i\tau}} < 0, i\in B \right\}
+\end{equation} 
+Hereby, we choose the row $i$ with the minimal $-\frac{p_i}{P_{i\tau}}$ and save this index to $\sigma$. The minimal quotient determines the maximum step size along the feasible direction. If $-\frac{p_i}{P_{i\tau}}\geq 0$ fir all $i$, then the original LP is unbounded and the maximum feasible step size is infinitely large. The algorithm stops in that very case. \\
+
+If a feasible Pivot element is found the following update rules can be used, in order to obtain the new Simplex tableau. \\
+\begin{quotation}
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{r|r|r}
+		$ST_n$&$x_N$&$1$\\
+		\hline
+		$x_B=$&$P$&$p$\\
+		\hline
+		$z=$&$q^T$&$q_0$
+	\end{tabular}
+	$\longrightarrow$
+	\begin{tabular}{r|r|r}
+		$ST_{n+1}$&$x_{\bar{N}}$&$1$\\
+		\hline
+		$x_{\bar{B}}=$&$\bar{P}$&$\bar{p}$\\
+		\hline
+		$z=$&$\bar{q}^T$&$\bar{q}_0$
+	\end{tabular}
+	\endgroup
+\end{quotation}
+
+\begin{quotation}
+	\begingroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{lrl}
+		$I_{\bar{N}} $&$:=$&$ I_N \backslash\{ \tau \} \cup \{ \sigma \}$\\
+		$I_{\bar{B}} $&$:=$&$ I_B \backslash\{ \sigma \} \cup \{ \tau \}$
+	\end{tabular}
+	\endgroup
+\end{quotation}
+
+\begin{quotation}
+	\begingroup
+	\def\arraystretch{2}
+	\begin{tabular}{lrll}
+		$ \bar{P}_{\sigma\tau}$&$:=$&$\dfrac{1}{P_{\sigma\tau}} $&\vspace{0.1cm}\\
+		$\bar{P}_{\sigma j}$&$:=$&$ -\dfrac{P_{\sigma j}}{P_{\sigma\tau}}$& $ j\in I_N\ \backslash\{\tau\}$\vspace{0.1cm}\\
+		$ \bar{P}_{i\tau}$&$ :=$ & $ \dfrac{P_{i\tau}}{P_{\sigma\tau}} $&$ i\in I_B\backslash \{\sigma\}$\\
+		$ \bar{p}_\sigma $&$:=$&$ -\dfrac{p_\sigma}{P_{\sigma\tau}} $&\\
+		$ \bar{p}_i $&$:=$&$ p_i - \dfrac{p_\sigma}{P_{\sigma\tau}}\cdot P_{i\tau}$&$i\in I_B\backslash\{ \sigma \}$\\
+		$ \bar{q}_\tau $&$:=$&$ \dfrac{q_\tau}{P_{\sigma\tau}} $&\\
+		$ \bar{P}_{ij} $&$ := $&$ P_{ij} - \dfrac{P_{\sigma j}}{P_{\sigma\tau}}\cdot q_\tau$&$ i\in I_B\backslash \{\sigma\}, j\in I_N\backslash\{\tau\} $\\
+		$ q_j $&$ := $&$ q_j - \dfrac{P_{\sigma j}}{P_{\sigma\tau}}\cdot q_\tau $& $ j\in I_N\backslash\{\tau\} $\\
+		$ \bar{q}_0 $&$:=$&$ q_0 - \dfrac{p_\sigma}{P_{\sigma\tau}}\cdot q_\tau $ 
+	\end{tabular}
+	\endgroup
+\end{quotation}
+
+These are in fact just equivalent alterations of the original equation system, hereby swapping a basic and a non-basic variable. Thus, for given LP and its equation system we can uniquely determine its state by just its basic variables. 
+
+\begin{lemma}
+	A Simplex tableau and thus its solution is optimal iff $p\geq0$ and $q\geq0$
+\end{lemma}
+
+The algorithm stops with respect to the above lemma. 
+
+The way the Simplex algorithm works can be observed in a visualization of its feasible space\ref{fig:2dvisu}. The first feasible basic solution is marked in black, the second in blue and the third in red. At first we are able to discover that the formerly mentioned quite abstract definition of a vertex corresponds to what we would also call a vertex in real life. Additionally, we can observe that the algorithm is moving along the edges of the polytope hopping from vertex to vertex along the feasible direction, defined by the objective function. \\
+
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[x=0.15cm,y=0.1cm]
+		
+		\def\xmin{0}
+		\def\xmax{60}
+		\def\ymin{0}
+		\def\ymax{50}
+		
+		% grid
+		\draw[style=help lines, ystep=10, xstep=5] (\xmin,\ymin) grid
+		(\xmax,\ymax);
+		
+		% axes
+		\draw[->, thick] (\xmin,\ymin) -- (\xmax+10,\ymin) node[right] {$x_1$};
+		\draw[->, thick] (\xmin,\ymin) -- (\xmin,\ymax+10) node[above] {$x_2$};
+		
+		% xticks and yticks
+		\foreach \x in {0,10,...,60}
+		\node at (\x, \ymin) [below] {\x};
+		\foreach \y in {0,10,...,50}
+		\node at (\xmin,\y) [left] {\y};
+		
+		% plot the data from the file data.dat
+		% smooth the curve and mark the data point with a dot
+		
+		% generate and plot another a curve y = 0.1 x^2 + 2.5
+		% this generates the files figure.parabola.gnuplot and figure.parabola.table 
+		%\draw[color=red, domain=\xmin:\xmax] plot[id=parabola]
+		%function{0.1*x**2 + 2.5} node [right] {$y=0.1\,x^2 + 2.5$};
+		\draw [thick, blue](0,33.3) -- (25,0) ;
+		\draw [thick, red](0,25) -- (50,0) ;
+		
+		\node[draw,circle,inner sep=2pt,fill] at (0,0){};
+		\filldraw[thick,fill=red,fill opacity=0.4] (0,0) -- (0,25) -- (10,20) -- (25,0) -- (0,0) -- cycle;
+		\begin{customlegend}[
+			legend entries={ % <= in the following there are the entries
+				$ x_2 = -\frac{4}{3}\cdot x_1 + \frac{100}{3} $,
+				$x_2 = -\frac{1}{2}\cdot x_1 + 25$
+			},
+			legend style={at={(60,50)},font=\footnotesize}] % <= to define position and font legend
+			% the following are the "images" and numbers in the legend
+			\addlegendimage{thick,blue,opacity = 1}
+			\addlegendimage{thick,red,opacity = 1}
+		\end{customlegend}
+		\node[draw,circle,inner sep=2pt,fill] at (0,0){};
+		\node[draw,circle,inner sep=2pt,fill,blue] at (0,25){};
+		\node[draw,circle,inner sep=2pt,fill, red] at (10,20){};
+		
+		
+		\filldraw[thick,fill=red,fill opacity=0.4] (0,0) -- (0,25) -- (10,20) -- (25,0) -- (0,0) -- cycle;
+	\end{tikzpicture}
+	\caption{Visualization of the simplified example problem}
+	\label{fig:2dvisu}
+\end{figure}
+
+
+
+\begin{theorem}
+	If $(P)$ is solvable, then there is a vertex of $G$ which solves $(P)$.
+\end{theorem}
 
 
 \subsection{The \textsc{Simplex}-Algorithm}
