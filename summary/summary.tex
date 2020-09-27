@@ -210,9 +210,6 @@ While these recent definitions lack the ability to intrinsically motivate the ap
 	
 	The variables $x_1, x_2, x_3$ each denote the amount of each ingredient in 100g.
 \end{example}
-Before discussing the example, we have to define the term \textit{convex combination}
-
-
 
 By solving the VEP, we yield all vertices of the corresponding polyhedron, that is all points that cannot be written as convex combinations of two other points. Inverting this very statement, all other points within $P$ are convex combinations of at least two other points. More specifically we are able to rewrite each point within $P$ as convex combinations of vertices of $P$. Thus, if we find all vertices of the given arrangement of linear inequalities, we can produce infinitely many food combinations by randomly choosing a convex combinations of the given vertices. However, we still have to find these vertices.
 
@@ -221,9 +218,50 @@ In history there have been various approaches to the VEP, that can be classified
 
 The other method is called \textit{Fourier-Motzkin} or \textit{double description} method\cite{Motzkin}. These methods yield the vertices by successively adding hyperplanes and keeping track of the remaining possible vertices. The double description method in fact solves the dual problem of FEP. \\
 
-While this classification was made in 1992 within this very publication, there haven't been exceptions to this ever since. We will discuss this fact in the last chapter.
+While this classification was made in 1992 within this very publication, there haven't been exceptions to this ever since. We will discuss this in more detail in the last chapter.
 
 \section{Linear Programs}
+While linear optimization problems are in general not necessary in order to solve the VEP with a pivot based method, it was utilized for this very approach. Additionally it gives us the chance to discuss and introduce some definitions and theorems that underline its simplicity and effectiveness. In the following we will use the terms \textit{linear program}(LP) and \textit{linear optimization problem} interchangeably.\\
+
+\begin{mydef}
+	Let $ G \subseteq \mathbb{R}^n$ be a polyhedron and $ c \in \mathbb{R}^n$. Then a problem of the form \\
+	\vspace{0.15cm}
+	\begin{quotation}
+		$ z = f(x) = c^T \cdot x \rightarrow min\hspace{1cm} with\ x \in G$
+	\end{quotation} 
+	is called a \emph{linear} optimization problem.
+\end{mydef}
+
+Hereby $P$ describes the feasible space as a set of $n$-dimensional vectors, while the objective function is denoted with $f:P\rightarrow\mathbb{R}$, which maps the vectors into the real numbers. Additionally, we can easily see the type of optimization, here minimization, while also a maximization problem is possible. Without loss of generality we will only consider minimization problems here. The linearity of the problem is derived from the linearity of the objective function itself. \\
+
+Furthermore, we are able to bring in a statement about the \textit{standard form} of linear programs. \\
+\begin{corollary}
+	All finite dim. linear optimization problems can be written in the following form:\\
+	\begin{equation}
+		\label{standardform}
+		z = f(x) = c^T \cdot x \rightarrow min \hspace{1cm} bei\ x \in G:=\{x \in \mathbb{R}^n: Ax \geq b, x \geq 0\}
+	\end{equation}
+	with $A\in \mathbb{R}^{m\times n}$, $b\in\mathbb{R}^m$, $x\geq 0$. Additionally, let $rg(A)=m$ and $m< n$.\\
+	We call this form the \textit{standard form}.
+\end{corollary}
+The finite dimensionality is expressed with regard to the amount of variables, and thus the width of both objective function and coefficient matrix. \\
+
+Hereby, the notation $x\geq0$ with $x\in \mathbb{R}$ describes the expression $x_j\geq 0$ for every $j=1,2,\dots,n$.\\ 
+After this quick introduction into the field of linear programs, we will now explore their solutions and the existence of those. We will use the following terminology.
+
+\begin{mydef}
+	Let $\bar{X} \in \mathbb{R}^n$ be a solution to a linear program in standard form \ref{standardform}.\\
+	\begin{itemize}
+		\item[(1)] If $\bar{x}$ satisfies the linear equality system defined by $A\bar{x}\geq b, \bar{x}\geq 0$ (see \ref{standardform}), we call $x\bar{x}$ as a \emph{feasible solution}. Otherwise we will call $\bar{x}$ a infeasible solution.
+		\item[(2)] $\bar{x}$ is \emph{optimal}, if for its objective value $\bar{z} = f(\bar{x})$ with objective function $f$ the following applies:
+		\begin{quotation}
+			$\bar{z} = f(\bar{x}) \leq z = f(x)$ for all $x\in G$
+		\end{quotation}
+	\end{itemize}
+	If a linear program has a feasible solution but no optimal one, we will call this LP unbounded.
+\end{mydef}
+
+
 \section{Simplex algorithm}
 \subsection{Linear programs}
 \subsection{The \textsc{Simplex}-Algorithm}
