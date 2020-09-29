@@ -5,16 +5,14 @@
 \BOOKMARK [2][-]{subsection.3.2}{Types of approaches}{section.3}% 5
 \BOOKMARK [1][-]{section.4}{Linear Programs}{}% 6
 \BOOKMARK [2][-]{subsection.4.1}{What is a Linear Optimization Problem?}{section.4}% 7
-\BOOKMARK [2][-]{subsection.4.2}{Duality of LP}{section.4}% 8
-\BOOKMARK [1][-]{section.5}{Simplex algorithm}{}% 9
-\BOOKMARK [2][-]{subsection.5.1}{Calculating a first Simplex tableau from the Standard Form}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.2}{The Simplex Algorithm}{section.5}% 11
-\BOOKMARK [3][-]{subsubsection.5.2.1}{Phase 1: Determine a first feasible solution \(vertex\)}{subsection.5.2}% 12
-\BOOKMARK [3][-]{subsubsection.5.2.2}{Phase 2: Determine the optimal solution}{subsection.5.2}% 13
-\BOOKMARK [2][-]{subsection.5.3}{The Simplex-Algorithm}{section.5}% 14
-\BOOKMARK [1][-]{section.6}{Avis and Fukudas Algorithm}{}% 15
-\BOOKMARK [2][-]{subsection.6.1}{How to move up the tree?}{section.6}% 16
-\BOOKMARK [2][-]{subsection.6.2}{What is it even doing?}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.3}{Degeneracy}{section.6}% 18
-\BOOKMARK [2][-]{subsection.6.4}{Why is that good?}{section.6}% 19
-\BOOKMARK [1][-]{section.7}{Future Work based on this }{}% 20
+\BOOKMARK [2][-]{subsection.4.2}{Formulating LPs over Arrangements}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.3}{Duality of LP}{section.4}% 9
+\BOOKMARK [1][-]{section.5}{Simplex algorithm}{}% 10
+\BOOKMARK [2][-]{subsection.5.1}{Calculating a first Simplex tableau from the Standard Form}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.2}{The Simplex Algorithm}{section.5}% 12
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Phase 1: Determine a first feasible solution \(vertex\)}{subsection.5.2}% 13
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Phase 2: Determine the optimal solution}{subsection.5.2}% 14
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Complexity, Degeneracy and other Properties}{subsection.5.2}% 15
+\BOOKMARK [1][-]{section.6}{Avis and Fukudas Algorithm}{}% 16
+\BOOKMARK [2][-]{subsection.6.1}{Complexity and other properties}{section.6}% 17
+\BOOKMARK [1][-]{section.7}{Future Work based on this }{}% 18

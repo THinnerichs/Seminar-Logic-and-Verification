@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2020.9.10)  27 SEP 2020 18:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2020.9.10)  29 SEP 2020 15:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -697,7 +697,7 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \c@lemma=\count304
 \c@theorem=\count305
 \c@corollary=\count306
-\c@satz=\count307
+\c@proposition=\count307
 
 (/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
@@ -717,25 +717,29 @@ File: l3backend-pdfmode.def 2020-06-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count308
 \l__pdf_internal_box=\box61
 )
-(./summary.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
+(./summary.aux
+
+LaTeX Warning: Label `alg:seq' multiply defined.
+
+)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
 \AtBeginShipoutBox=\box62
-Package hyperref Info: Link coloring OFF on input line 77.
+Package hyperref Info: Link coloring OFF on input line 70.
  (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -747,9 +751,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count309
 )
-LaTeX Info: Redefining \ref on input line 77.
-LaTeX Info: Redefining \pageref on input line 77.
-LaTeX Info: Redefining \nameref on input line 77.
+LaTeX Info: Redefining \ref on input line 70.
+LaTeX Info: Redefining \pageref on input line 70.
+LaTeX Info: Redefining \nameref on input line 70.
 
 (./summary.out) (./summary.out)
 \@outlinefile=\write4
@@ -815,14 +819,14 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.17} into 
 your preamble.
- on input line 77.
+ on input line 70.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 95.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 88.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 95.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 88.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -832,93 +836,98 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./summary.toc)
 \tf@toc=\write5
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 121--123
+Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--135
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
+Underfull \hbox (badness 10000) in paragraph at lines 129--130
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 139--140
+Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
 
 [3]
-Overfull \hbox (5.07939pt too wide) in paragraph at lines 156--157
+Overfull \hbox (5.07939pt too wide) in paragraph at lines 149--150
 []\OT1/cmr/m/n/10.95 As a polytope is in fact a set of points, too, this also a
 pplies to the polyhedra and arrangements. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
 
-Overfull \hbox (3.28745pt too wide) in paragraph at lines 200--200
+Overfull \hbox (3.28745pt too wide) in paragraph at lines 193--193
 []\OT1/cmr/m/it/10.95 Var| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
 []\OT1/cmr/m/it/10.95 Energy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
 []\OT1/cmr/m/it/10.95 Protein
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
 []\OT1/cmr/m/it/10.95 Calcium
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
 []\OT1/cmr/m/it/10.95 Price
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
 \OT1/cmr/m/it/10.95 (Euro
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 192--210
+Underfull \hbox (badness 10000) in paragraph at lines 185--203
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 217--218
+Underfull \hbox (badness 10000) in paragraph at lines 210--211
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
+Underfull \hbox (badness 10000) in paragraph at lines 212--213
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
+Underfull \hbox (badness 10000) in paragraph at lines 218--219
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 236--237
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
 
  []
 
@@ -928,76 +937,179 @@ Underfull \hbox (badness 10000) in paragraph at lines 248--249
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--256
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 267--268
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
 
  []
 
 [6]
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 313--314
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 316--317
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 345--346
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 348--349
+
+Underfull \hbox (badness 10000) in paragraph at lines 347--348
 
  []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 355.
+put line 356.
+
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
+
+ []
+
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 431--433
+Underfull \hbox (badness 10000) in paragraph at lines 438--440
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--435
+Underfull \hbox (badness 10000) in paragraph at lines 441--442
 
  []
 
 [9]
+Underfull \hbox (badness 10000) in paragraph at lines 496--497
 
-LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
-(Font)              using `OT1/cmr/bx/n' instead on input line 556.
+ []
 
-[10pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
+
+Underfull \hbox (badness 10000) in paragraph at lines 498--499
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 560--561
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 569--570
+
+ []
+
+[11pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.560 	\item w
-              hy does it work? $\rightarrow$ translate some stuff from last ...
-] [11] [12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 591.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 591.
+l.579 
+      ]
+Underfull \hbox (badness 10000) in paragraph at lines 596--597
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 602--603
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 604--605
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--613
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 614--615
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 618--619
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 620--622
+
+ []
+
+[12]
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 633.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 661--662
+
+ []
+
+
+Overfull \hbox (1.78716pt too wide) in paragraph at lines 663--664
+\OT1/cmr/m/n/10.95 search for more vertices from the previously discovered node
+. While in this algorithm formulation,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 663--664
+
+ []
+
+
+Overfull \hbox (7.12024pt too wide) in paragraph at lines 666--668
+\OT1/cmr/m/n/10.95 The algorithm gains the following properties derived from th
+e previously described sub-procedures.
+ []
+
+
+Overfull \hbox (1.31067pt too wide) in paragraph at lines 666--668
+\OT1/cmr/m/n/10.95 At first the method does not need any additional storage bey
+ond the input data, as all calculations
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 666--668
+
+ []
+
+[13]
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 670.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 669--671
+
+ []
+
+[14] [15]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 693.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 693.
  (./summary.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 591.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 591.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 693.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 693.
 Package rerunfilecheck Info: File `summary.out' has not changed.
-(rerunfilecheck)             Checksum: 6AE1FD52BD9B0BE4E6B543246D7015FD;1448.
+(rerunfilecheck)             Checksum: 3EB6A1FDA6C02B552A1E5AE5B07A1641;1371.
 
 
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 591.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 693.
  ) 
 Here is how much of TeX's memory you used:
- 28461 strings out of 480478
- 672948 string characters out of 5905959
- 1088770 words of memory out of 5000000
- 43888 multiletter control sequences out of 15000+600000
- 545621 words of font info for 72 fonts, out of 8000000 for 9000
+ 28485 strings out of 480478
+ 673246 string characters out of 5905959
+ 1085770 words of memory out of 5000000
+ 43891 multiletter control sequences out of 15000+600000
+ 546223 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,16n,98p,733b,1188s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,16n,98p,821b,1188s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1025,10 +1137,10 @@ e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-sup
 er/sfrm1095.pfb>
-Output written on summary.pdf (12 pages, 260321 bytes).
+Output written on summary.pdf (15 pages, 277111 bytes).
 PDF statistics:
- 313 PDF objects out of 1000 (max. 8388607)
- 276 compressed objects within 3 object streams
- 74 named destinations out of 1000 (max. 500000)
- 173 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 342 PDF objects out of 1000 (max. 8388607)
+ 301 compressed objects within 4 object streams
+ 95 named destinations out of 1000 (max. 500000)
+ 157 words of extra memory for PDF output out of 10000 (max. 10000000)
 

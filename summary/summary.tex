@@ -24,7 +24,7 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
-\newtheorem{satz}{Satz}
+\newtheorem{proposition}{Proposition}
 
 \makeatletter
 \renewenvironment{quotation}
@@ -57,13 +57,6 @@
 	},
 }
 
-
-%opening
-%\title{	Proseminar \glqq Theoretische Informatik\grqq{}\\
-%		Lineare Optimierungsprobleme und deren Lösung mit Hilfe des \textsc{Simplex}-Verfahrens}
-%\author{Tilman Hinnerichs}
-%\date{Sommersemester 2018}
-
 \usepackage{fancyhdr}
 
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
@@ -82,7 +75,7 @@
 		\LARGE \textbf{\uppercase{A Summary on:\\
 			A Pivoting Algorithm for Convex Hulls and Vertex Enumeration of Arrangements and Polyhedra}
 		\HRule{1pt} \\ [0.5cm]
-		\normalsize \today \vspace*{5\baselineskip}}
+		\normalsize September 30, 2020 \vspace*{5\baselineskip}}
 	
 	\date{Summer semester 2020}
 	
@@ -131,7 +124,7 @@ In this first section we will introduce the needed notations and basics for the 
 	In general, this is the definition of a polytope, as polyhedra are the 3-dimensional special case of a polytope. As Avis and Fukuda use these terms interchangeably, we will do so as well in the following. 
 \end{remark}
 
-This definition states that the set of points is constrained by a set of $m$ linear inequalities with $n$ that are basically hyperplanes in the \textit{n} dimensional space. In the following we will abbreviate a \textit{convex polyhedron} simply as a \textit{polyhedron}. \\
+This definition states that the set of points is constrained by a set of $m$ linear inequalities with $n$ that are basically hyperplanes in the \textit{n} dimensional space. In general, we assume that $G\neq\emptyset$, if not stated otherwise. In the following we will abbreviate \textit{convex polyhedra} simply as \textit{polyhedra}. \\
 
 An \textit{arrangement of hyperplanes} or \textit{arrangement} for short, is a decomposition of the given underlying space using a set of hyperplanes/ linear inequalities. As both concepts are fairly similar, we will not explicitly list \textit{arrangements} in every definition, as every following statement holds for both polyhedra and arrangements. If that is not the case, arrangements will be named separately.\\
 
@@ -263,6 +256,10 @@ After this quick introduction into the field of linear programs, we will now exp
 	If a linear program has a feasible solution but no optimal one, we will call t his LP unbounded.
 \end{mydef}
 
+\subsection{Formulating LPs over Arrangements}
+Constructing an LP for a given hyperplane arrangement is fairly hard, as it is given by equations $y=Ax + b$ rather than inequalities. In order to reduce dimensionality, we choose $m$ linearly independent equations and solve for $x$. After adding a random objective function, we interpret the result as a Simplex tableau. As its quite easy to check, whether the normal vectors are parallel, we assume that the arrangement has at least on vertex.
+
+
 \subsection{Duality of LP}
 Linear programs can be reformulated, by basically \glqq swapping\grqq{} the coefficient matrix, therefor introducing new variables and reformulating the linear inequalities. We will not go into further details here, as we are just interested in the yielded results. At first glance, the original or \textit{primal} inequality system and its dual formulation have not that much in common, but in fact they share and mutually propagate many interesting properties. \\
 
@@ -313,7 +310,7 @@ Before we are able to start applying the Simplex algorithm to a LP we need to tr
 In contrast to the standard form the feasible space is now restricted by linear equations rather than inequalities. Additionally the dimensionality of $x'$ has changed to $m+n$. These rather absurd looking changes are motivated by introducing so called \textit{slack variables} that are added to the smaller side of the inequality. We thus introduce a new variable $s\geq 0$ for each inequality that describes the difference of both sides. For example we can transform the inequality $x\leq y$ to the equation $x + s=y$. This new equation is equivalent in meaning to its predecessor inequality.\\
 
 \begin{example}
-	As our introductory example is way too large to efficiently show the power of the Simplex algorithm, we will reduce this problem to two variables and two new inequalities as listed below. This is already given in standard form.\\
+	As our introductory example is way too large to efficiently show the power of the Simplex algorithm, we will reduce this problem to two variables and two new inequalities as listed below. We also add a random objective function. This system is already given in standard form.\\
 	
 	\begin{equation}
 		\begin{tabular}{rrrrrrr}
@@ -345,9 +342,13 @@ In contrast to the standard form the feasible space is now restricted by linear 
 	\end{equation}
 \end{example}
 
-At this stage we will introduce the terms \textit{basic solution} and \textit{basic variables}. Let $I=\{1,\dots,m+n\}$ be the index set denoting the given indices in the Simplex tableau. As $rank(A)=m$ holds, $rank(A')=m$ follows, and therefor there has to be subset $I_B \subset I$ with $|I_B| = m$, such that the columns $A^i, i\in I_B$ with $A^i$ denoting the $i$-th column, are linearly independent. We hence denote $I_B$ as the \textit{basis index set} describing the \textit{basic variables} $x_B$, and the \textit{non-basis index set} $I_N=I\backslash I_B$ describing the \textit{non-basic variables} $x_N$.\\
+At this stage we will introduce the terms \textit{basic solution} and \textit{basic variables}. Let $I=\{1,\dots,m+n\}$ be the index set denoting the given indices in the Simplex tableau. As $rank(A)=m$ holds, $rank(A')=m$ follows, and therefor there has to be subset $B \subset I$ with $|B| = m$, such that the columns $A^i, i\in B$ with $A^i$ denoting the $i$-th column, are linearly independent. We hence denote $B$ as the \textit{basis index set} describing the \textit{basic variables} $x_B$, and the \textit{non-basis index set} $N=I\backslash B$ describing the \textit{non-basic variables} $x_N$.\\
 
-A basic solution is defined with respect to the given equation system as a unique solution to a subset of $m$ inequalities solved as equations. This definition is similar to the characterization of corollary \ref{corollary1}. In fact, this corollary is derived from the relation of basic solutions and vertex, such that each vertex has at least one basic solution. Thus, we will now use these terms interchangeably.
+A basic solution is defined with respect to the given equation system as a unique solution to a subset of $m$ inequalities solved as equations. This definition is similar to the characterization of corollary \ref{corollary1}. In fact, this corollary is derived from the relation of basic solutions and vertex, such that each vertex has at least one basic solution. Thus, we will now use these terms interchangeably.\\
+
+\begin{mydef}
+	A basic solution $v$ of polytope $G$ is called \emph{feasible}, iff $v\in G$.
+\end{mydef}
 
 \subsection{The Simplex Algorithm}
 The Simplex algorithm can be divided into two phases.
@@ -366,8 +367,9 @@ The algorithm starts by determining a first feasible solution, which is a vertex
 	If $G'\neq\emptyset$, then $G'$ has at least one vertex and at most finitely many vertices.
 \end{lemma}
 
-Thus, we should be able to find a first feasible basic solution.
+Thus, we should be able to find a first feasible basic solution.\\
 
+This method is in fact only the \textit{primal} Simplex algorithm, which can be extended to the \textit{dual} Simplex algorithm. The latter is a procedure to solve the dual version of the primal LP. We will call a subset of indices $B$ \textit{dual feasible} if its feasible for the dual LP, and \textit{dual infeasible} otherwise.
 
 
 \subsubsection{Phase 1: Determine a first feasible solution (vertex)}
@@ -429,8 +431,9 @@ as we rename all variables for the upcoming Simplex algorithm steps. We will alw
 
 \subsubsection{Phase 2: Determine the optimal solution}
 
-For each step of the algorithm we first determine a so called \textit{Pivot element} $P_{\sigma\tau}$ by finding the column $\tau\in I_N$ chosen randomly, and the row $\sigma\in I_B$, which is determined by
+For each step of the algorithm we first determine a so called \textit{Pivot element} $P_{\sigma\tau}$ by finding the column $\tau\in N$ chosen randomly, and the row $\sigma\in B$, which is determined by
 \begin{equation}
+	\label{Pivotsel}
 	- \dfrac{p_\sigma}{P_{\sigma\tau}} := \min \left\{ -\frac{p_i}{P_{i\tau}}\ \middle|\ -\frac{p_i}{P_{i\tau}} < 0, i\in B \right\}
 \end{equation} 
 Hereby, we choose the row $i$ with the minimal $-\frac{p_i}{P_{i\tau}}$ and save this index to $\sigma$. The minimal quotient determines the maximum step size along the feasible direction. If $-\frac{p_i}{P_{i\tau}}\geq 0$ fir all $i$, then the original LP is unbounded and the maximum feasible step size is infinitely large. The algorithm stops in that very case. \\
@@ -461,8 +464,8 @@ If a feasible Pivot element is found the following update rules can be used, in 
 	\begingroup
 	\def\arraystretch{1.5}
 	\begin{tabular}{lrl}
-		$I_{\bar{N}} $&$:=$&$ I_N \backslash\{ \tau \} \cup \{ \sigma \}$\\
-		$I_{\bar{B}} $&$:=$&$ I_B \backslash\{ \sigma \} \cup \{ \tau \}$
+		$I_{\bar{N}} $&$:=$&$ N \backslash\{ \tau \} \cup \{ \sigma \}$\\
+		$I_{\bar{B}} $&$:=$&$ B \backslash\{ \sigma \} \cup \{ \tau \}$
 	\end{tabular}
 	\endgroup
 \end{quotation}
@@ -472,13 +475,13 @@ If a feasible Pivot element is found the following update rules can be used, in 
 	\def\arraystretch{2}
 	\begin{tabular}{lrll}
 		$ \bar{P}_{\sigma\tau}$&$:=$&$\dfrac{1}{P_{\sigma\tau}} $&\vspace{0.1cm}\\
-		$\bar{P}_{\sigma j}$&$:=$&$ -\dfrac{P_{\sigma j}}{P_{\sigma\tau}}$& $ j\in I_N\ \backslash\{\tau\}$\vspace{0.1cm}\\
-		$ \bar{P}_{i\tau}$&$ :=$ & $ \dfrac{P_{i\tau}}{P_{\sigma\tau}} $&$ i\in I_B\backslash \{\sigma\}$\\
+		$\bar{P}_{\sigma j}$&$:=$&$ -\dfrac{P_{\sigma j}}{P_{\sigma\tau}}$& $ j\in N\ \backslash\{\tau\}$\vspace{0.1cm}\\
+		$ \bar{P}_{i\tau}$&$ :=$ & $ \dfrac{P_{i\tau}}{P_{\sigma\tau}} $&$ i\in B\backslash \{\sigma\}$\\
 		$ \bar{p}_\sigma $&$:=$&$ -\dfrac{p_\sigma}{P_{\sigma\tau}} $&\\
-		$ \bar{p}_i $&$:=$&$ p_i - \dfrac{p_\sigma}{P_{\sigma\tau}}\cdot P_{i\tau}$&$i\in I_B\backslash\{ \sigma \}$\\
+		$ \bar{p}_i $&$:=$&$ p_i - \dfrac{p_\sigma}{P_{\sigma\tau}}\cdot P_{i\tau}$&$i\in B\backslash\{ \sigma \}$\\
 		$ \bar{q}_\tau $&$:=$&$ \dfrac{q_\tau}{P_{\sigma\tau}} $&\\
-		$ \bar{P}_{ij} $&$ := $&$ P_{ij} - \dfrac{P_{\sigma j}}{P_{\sigma\tau}}\cdot q_\tau$&$ i\in I_B\backslash \{\sigma\}, j\in I_N\backslash\{\tau\} $\\
-		$ q_j $&$ := $&$ q_j - \dfrac{P_{\sigma j}}{P_{\sigma\tau}}\cdot q_\tau $& $ j\in I_N\backslash\{\tau\} $\\
+		$ \bar{P}_{ij} $&$ := $&$ P_{ij} - \dfrac{P_{\sigma j}}{P_{\sigma\tau}}\cdot q_\tau$&$ i\in B\backslash \{\sigma\}, j\in N\backslash\{\tau\} $\\
+		$ q_j $&$ := $&$ q_j - \dfrac{P_{\sigma j}}{P_{\sigma\tau}}\cdot q_\tau $& $ j\in N\backslash\{\tau\} $\\
 		$ \bar{q}_0 $&$:=$&$ q_0 - \dfrac{p_\sigma}{P_{\sigma\tau}}\cdot q_\tau $ 
 	\end{tabular}
 	\endgroup
@@ -487,12 +490,14 @@ If a feasible Pivot element is found the following update rules can be used, in 
 These are in fact just equivalent alterations of the original equation system, hereby swapping a basic and a non-basic variable. Thus, for given LP and its equation system we can uniquely determine its state by just its basic variables. 
 
 \begin{lemma}
-	A Simplex tableau and thus its solution is optimal iff $p\geq0$ and $q\geq0$
+	A Simplex tableau and thus its solution is optimal iff $p\geq0$ and $q\geq0$, thus being primal and dual feasible.
 \end{lemma}
 
-The algorithm stops with respect to the above lemma. 
+The algorithm eventually stops with respect to the above lemma. \\
 
 The way the Simplex algorithm works can be observed in a visualization of its feasible space\ref{fig:2dvisu}. The first feasible basic solution is marked in black, the second in blue and the third in red. At first we are able to discover that the formerly mentioned quite abstract definition of a vertex corresponds to what we would also call a vertex in real life. Additionally, we can observe that the algorithm is moving along the edges of the polytope hopping from vertex to vertex along the feasible direction, defined by the objective function. \\
+
+Eventually, what happens if don't chose row and column as given by Simplex update rules? By swapping a basic and a non-basic index, we obtain a new set of basic variables. if this state is not feasible, we are off the polytope, and not walking on the edges of it anymore. If we reach a feasible vertex, then we just took step along an edge in a direction possibly different from the direction determined by the objective function. We could do so by running a Simplex step and then swapping the two indices back. The latter step has to be feasible, as it was in the opposite direction. We are thus now free to roam along the polytope.
 
 
 \begin{figure}
@@ -551,28 +556,120 @@ The way the Simplex algorithm works can be observed in a visualization of its fe
 	\label{fig:2dvisu}
 \end{figure}
 
+\subsubsection{Complexity, Degeneracy and other Properties}
+Eventually, we want to briefly discuss the power and the significance of this very algorithm, especially with respect to our original topic, the VEP.\\
 
+For bounded, non-\textit{degenerate} polytopes, the original Simplex algorithm terminates and returns the optimal solution in polynomial time (on average). However, a polyhedron is not always non-degenerate as we will see with the following definition.
 
-\begin{theorem}
-	If $(P)$ is solvable, then there is a vertex of $G$ which solves $(P)$.
+\begin{mydef}(Degeneracy)\\
+	If a vertex $v\in G$ solves more than $m$ inequalities as equations, then we will call this vertex \emph{degenerate}. \\
+	If a polyhedron has at least one degenerate vertex, then we will call this polyhedron \emph{degenerate}.
+\end{mydef}
+
+the Simplex method struggles when multiple vertices have the same objective value, while also being mutually adjacent. This is the case for degenerate vertices, as we have to interpret one of the basic variables as $0$, too. Thus, multiple states of our Simplex tableau refer to the same vertex, which could lead the algorithm to circle along the basic solutions. However, we can simply introduce an order among the vertices, stating in which sequence they will be chosen, e.g. a lexicographic order of their corresponding basic indices set. Thus, the Simplex algorithm becomes deterministic and terminates in every case.\\
+
+The implications of Bland's rule are discussed in Theorem \ref{Bland}.
+
+\begin{theorem}(Bland's rule)\\
+	\label{Bland}
+	If we use Bland's rule for choosing the Pivot element for the Simplex step, then these updated Simplex steps will always yield a primal feasible basic solution. If Bland's rule is not applicable, then the basic solution is dual feasible and thus optimal.
 \end{theorem}
 
+Additionally, there are much simpler ways to choose a Pivot element. The Criss-Cross rule is choosing its row in the Simplex tableau, not by minimizing over the quotients as in \ref{Pivotsel}, but by choosing purely combinatorial. Thus, the updated Simplex tableau doesn't have to one maximizing the difference of objective function, as e.g., given in Bland's rule. 
 
-\subsection{The \textsc{Simplex}-Algorithm}
-\begin{itemize}
-	\item what does is do?
-	\item How does it work
-	\item why does it work? $\rightarrow$ translate some stuff from last presentation
-\end{itemize}
+\begin{lemma}
+	\label{theo4}
+	If $(P)$ is solvable, then there is a vertex of $G$ which solves $(P)$.
+\end{lemma}
+
+Thus, with both rules we will deterministically find the optimal basic solution and its vertex. 
+
+\begin{proposition}
+	\label{PropoBland}
+	Let $G$ be a polytope. If we perform the Simplex algorithm with the update strategy
+	\begin{itemize}
+		\item Bland's rule, then each generated tableau will be primal feasible and the procedure leads to an optimal basic solution.
+		\item Criss-Cross rule, then the procedure leads to an optimal basic solution.
+	\end{itemize}
+\end{proposition}
+
+Both rules add determinism and thus yield a unique successor for each basic solution $v$. Concatenating the successor edges, we gain a unique path from each basic solution to the optimal one. As this graph cannot have any cycles, these paths build a spanning tree of all vertices of $G$, rooted in the optimal vertex.\\
+
+The degeneracy of the optimal vertex however, cannot be solved by neither Bland's or Criss-Cross rule. The graph thus becomes a spanning forest, as the Simplex algorithm stops when reaching an optimal basic solution. Fortunately, we are able to find all optimal basic solutions by a simple search strategy explained later on. If we are given all optimal vertices, we can construct an artificial new vertex, from which all optimal basic solutions are reachable. We do so by
 
 \section{Avis and Fukudas Algorithm}
-\subsection{How to move up the tree?}
-Bland's rule and Criss-Cross rule
-\subsection{What is it even doing?}
-\subsection{Degeneracy}
-with visual example from presentation
-\subsection{Why is that good?}
-Complexity
+
+While these properties of LPs are fairly interesting, how does this help to eventually solve the VEP? Given a polytope $G$,  we introduce a random but fixed linear objective function $f(x):=c^T\cdot x$ with $c^T\neq 0$, that defines any gradient along $G$. This leads to the previously mentioned spanning tree of $G$. \\
+
+It was the idea of Avis and Fukuda, published in the discussed paper, to start a reverse search over this spanning tree to find all vertices, starting from the optimal node. But, the Simplex algorithm only teaches us how to move along the gradient of $f$, and thus only gives as a unidirectional, directed path from any vertex $v$ to the root vertex, but not vice versa. \\
+
+\begin{mydef}
+	Let $v$ be a basic feasible solution (vertex).\\
+	Let $(\tau, \sigma)$ be the pivot obtained by applying \emph{any} rule to $v$ yielding $v'$.  \\
+	We call $(\sigma, \tau)$ the \textit{reverse pivot} for $v'$.
+\end{mydef}
+
+By simply pivoting with the same two indices, we can revert a previously done Bland's rule or Criss-Cross rule step. \\
+
+This helps us to solve the main issue and major contribution of this paper:\\
+\begin{quotation}
+	Given a vertex $v$, how do we find all vertices $v'$ that have $v$ as its successor?
+\end{quotation}
+As we can only determine successors and not predecessors of vertices, this problem still remains. Avis and Fukuda were able to resolve this issue by a simple brute force approach: We therefor check all neighbours $v'$ of a given vertex $v$, and check whether Bland's rule takes us back to the original basic solution. In order to do so, we first have to propose the characterization of a neighbour.\\
+
+\begin{mydef}(Neighbour)\\
+	For a given vertex $v$ defined by its set of basic variables $B$, we can define \emph{adjacency} as\\
+	\begin{equation*}
+		Adj(B, i,j) := \left\{ \begin{matrix}
+			\emptyset&P_{ij}=0\\
+			\emptyset&(B\cup \{i\})-\{j\} \text{ infeasible tableau}\\
+			
+			(B\cup \{i\})-\{j\}&\text{feasible tableau}
+		\end{matrix} \right.
+	\end{equation*}
+	
+	The whole neighbourhood of a vertex is given by
+	\begin{equation}
+		\textsc{neighbours}(B,N,P):=\{ Adj(B,i.j) | \text{for }i\in N, j\in B\text{ if } Adj(B,i,j)\neq\emptyset \}
+	\end{equation}
+
+\end{mydef}
+
+As distinguishing feasible and infeasible tableaus or states is simple, we can easily assemble all feasible neighbours of $v$. We now formulate the above informal description of the procedure into the following algorithm.
+
+\begin{algorithm}[H]
+	\caption{Reverse-search the spanning tree}
+	\label{alg:seq}
+	\begin{algorithmic}[1]
+		\STATE \textsc{Search}\textbf{(B,N,P):}
+		\FOR{all $i,j$ in \textsc{neighbours}$(B,N,P)$}
+		\IF{ \textsc{reverse}$(B,N,P,i,j)$}
+		\STATE \textsc{pivot}$(B,N,P,i,j)$
+		
+		\IF{\textsc{lex\_min}$(B,N,P)$}
+		\STATE $print(B)$
+		\ENDIF
+		\STATE \textsc{Search}$(B,N,P)$
+		\STATE \textsc{select-pivot}$(P)$
+		\STATE \textsc{pivot}$(B,N,P,i,j)$
+		
+		\ENDIF
+		\ENDFOR
+	\end{algorithmic}
+\end{algorithm}
+
+The function \textsc{reverse}$(B,N,P,i,j)$ checks  whether $(i,j)$ is a reverse pivot of the state given by $B$. Additionally, we introduce the method \textsc{lex\_min}$(B,N,P)$, which is helpful for the reduction of degenerate vertices. This method checks the current basic solution if it is the minimum with respect to a predefined, lexicographic ordering, among all basic solutions of the current vertex. As the algorithm will visit every basic solution, we thus ensure that the vertex gets printed only once. \textsc{Select-pivot} hereby corresponds to any of the previously mentioned pivoting rules.\\ 
+
+Starting at the root node, the algorithm checks all any of the neighbour vertices for existence of reverse pivots. If that is the case, the current node gets printed. We then start a recursive search for more vertices from the previously discovered node. While in this algorithm formulation, find it to be a depth first search, any search technique is viable. If the algorithm has finished the \textsc{search} sub-procedure, it jumps back to its successor with a simple pivot step. Starting from any first feasible solution, found by usage of the first phase of the Simplex method, we can always find the initial, optimal, root vertex applying the Bland's rule iteratively.\\
+
+\subsection{Complexity and other properties}
+The algorithm gains the following properties derived from the previously described sub-procedures. At first the method does not need any additional storage beyond the input data, as all calculations can be run on the input Simplex tableau. Second, by construction the output will be free of duplicates. Every basic solution will be visited multiple times, but due to the spanning tree and handling of degenerate cases, only output once. Third, the algorithm is extremely simple, requires no complicated data structures, as everything can be computed on the tableau itself. Fourth, the procedure immanently handles all degenerate cases for both optimal and regular tableaus. Regarding time complexity, reverse search is dependent on the amount of vertices, and thus output sensitive for non-degenerate cases.
+Eventually, given by its recursive search nature and the independence of the subtree searches, the method can be parallelized efficiently and easily.\\
+
+Discussing the complexity in more detail, we assume a polyhedron $G\subset\mathbb{R}^d$ with $v$ vertices, bounded by $n$ inequalities. As the dimensionality of $G$ is given by $d$, this is also the amount of necessary non-basic variables. Hence, the Simplex tableau consists of $(n+1)\times (d+1)$ entries, which reduces to $\mathcal{O}(nd)$ in space complexity. \\
+Observing time complexity, the algorithm has to visit and check all $v$ vertices for the \textsc{reverse} property. As there are $|B|\cdot|N|$ indices pairs for  possible neighbours, we have to repeat the search and revert check $vdn$ times. Hence, the time complexity reduces to $\mathcal{O}(vdn)$ for non-degenerate polyhedra. When including degenerate cases the complexity grows to $\mathcal{O}\left( dn(n-d){n-2\choose m-1} \right)$. However, for unbounded polyhedra the complexity becomes NP-hard.\\
+
+Up until now we have omitted 
 
 \section{Future Work based on this }
 %body
