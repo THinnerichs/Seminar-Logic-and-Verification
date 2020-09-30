@@ -94,19 +94,14 @@
 
 \newpage
 
-\begin{itemize}
-	\item What audience? students with simple to no prior knowledge
-	\item Don't just formulate presentation in words $\rightarrow$ add more stuff from paper
-	\item add facet enumeration
-	\item future work $\rightarrow$ paper citing this paper
-	\item rewrite their definitions with yours for extra points
-	\item add some of the theorems from the Simplex summary
-\end{itemize}
+\section{Introduction}
+This summary outlines the approach from Avis and Fukuda to the Vertex Enumeration problem mollified with various references to basic concepts such as the \textsc{Simplex} algorithm.\\
 
-This is a summary of the approach from Avis and Fukuda to the Vertex Enumeration problem mollified with various references to basic concepts such as the \textsc{Simplex} algorithm.  
+The Vertex Enumeration Problem (VEP) is one of the most fundamental problems in computational geometry and has applications in fields such as computational biology and quantum physics.\\
 
-\section{General remarks on the paper}
-The paper \glqq A Pivoting Algorithm for Convex Hulls and Vertex Enumeration of Arrangements and Polyhedra\grqq{} was written by David Avis and Komei Fukuda. It was published in 1992 in the journal \glqq Discrete \& Computational Geometry\grqq{} and is regarded as one of the most cited papers in this very field with a number of 751 citations (as of 26.09.2020, according to Google Scholar). As a non-book, non-survey paper publication in such a specific field of research, this can be considered a fairly high amount of citations. 
+The paper \glqq A Pivoting Algorithm for Convex Hulls and Vertex Enumeration of Arrangements and Polyhedra\grqq{} was written by David Avis and Komei Fukuda. It was published in 1992 in the journal \glqq Discrete \& Computational Geometry\grqq{} and is regarded as one of the most cited papers in this very field with a number of 751 citations (as of 26.09.2020, according to Google Scholar). As a non-book, non-survey paper publication in such a specific field of research, this can be considered a fairly high amount of citations, emphasizing its importance.\\
+
+We will thus follow a similar outline by first introducing polyhedra and arrangements, and the VEP on those. We then observe linear optimization problems and how they can be solved by the Simplex algorithm.
 
 \section{Polyhedra and Arrangements}
 In this first section we will introduce the needed notations and basics for the Vertex Enumeration Problem (VEP). At first, we will have to clarify the terms and concepts of the \textit{vertex} and \textit{polyhedra}.
@@ -257,7 +252,7 @@ After this quick introduction into the field of linear programs, we will now exp
 \end{mydef}
 
 \subsection{Formulating LPs over Arrangements}
-Constructing an LP for a given hyperplane arrangement is fairly hard, as it is given by equations $y=Ax + b$ rather than inequalities. In order to reduce dimensionality, we choose $m$ linearly independent equations and solve for $x$. After adding a random objective function, we interpret the result as a Simplex tableau. As its quite easy to check, whether the normal vectors are parallel, we assume that the arrangement has at least on vertex.
+Constructing an LP for a given hyperplane arrangement is fairly hard, as it is given by equations $y=Ax + b$ rather than inequalities. In order to reduce dimensionality, we choose $m$ linearly independent equations and solve for $x$. After adding a random objective function, we interpret the result as a Simplex tableau. As its quite easy to check whether the normal vectors are parallel, we assume that the arrangement has at least on vertex.
 
 
 \subsection{Duality of LP}
@@ -487,7 +482,7 @@ If a feasible Pivot element is found the following update rules can be used, in 
 	\endgroup
 \end{quotation}
 
-These are in fact just equivalent alterations of the original equation system, hereby swapping a basic and a non-basic variable. Thus, for given LP and its equation system we can uniquely determine its state by just its basic variables. 
+These are in fact just equivalent alterations of the original equation system, hereby swapping a basic and a non-basic variable. Thus, for given LP and its equation system we can uniquely determine its state by just its basic variables. The precise calculations and visualizations are given in the appendix.
 
 \begin{lemma}
 	A Simplex tableau and thus its solution is optimal iff $p\geq0$ and $q\geq0$, thus being primal and dual feasible.
@@ -662,17 +657,22 @@ The function \textsc{reverse}$(B,N,P,i,j)$ checks  whether $(i,j)$ is a reverse 
 
 Starting at the root node, the algorithm checks all any of the neighbour vertices for existence of reverse pivots. If that is the case, the current node gets printed. We then start a recursive search for more vertices from the previously discovered node. While in this algorithm formulation, find it to be a depth first search, any search technique is viable. If the algorithm has finished the \textsc{search} sub-procedure, it jumps back to its successor with a simple pivot step. Starting from any first feasible solution, found by usage of the first phase of the Simplex method, we can always find the initial, optimal, root vertex applying the Bland's rule iteratively.\\
 
+Eventually, we reached our goal of finding all vertices for our example problem, and are thus free to cook delicious dishes. 
+
 \subsection{Complexity and other properties}
 The algorithm gains the following properties derived from the previously described sub-procedures. At first the method does not need any additional storage beyond the input data, as all calculations can be run on the input Simplex tableau. Second, by construction the output will be free of duplicates. Every basic solution will be visited multiple times, but due to the spanning tree and handling of degenerate cases, only output once. Third, the algorithm is extremely simple, requires no complicated data structures, as everything can be computed on the tableau itself. Fourth, the procedure immanently handles all degenerate cases for both optimal and regular tableaus. Regarding time complexity, reverse search is dependent on the amount of vertices, and thus output sensitive for non-degenerate cases.
 Eventually, given by its recursive search nature and the independence of the subtree searches, the method can be parallelized efficiently and easily.\\
 
-Discussing the complexity in more detail, we assume a polyhedron $G\subset\mathbb{R}^d$ with $v$ vertices, bounded by $n$ inequalities. As the dimensionality of $G$ is given by $d$, this is also the amount of necessary non-basic variables. Hence, the Simplex tableau consists of $(n+1)\times (d+1)$ entries, which reduces to $\mathcal{O}(nd)$ in space complexity. \\
-Observing time complexity, the algorithm has to visit and check all $v$ vertices for the \textsc{reverse} property. As there are $|B|\cdot|N|$ indices pairs for  possible neighbours, we have to repeat the search and revert check $vdn$ times. Hence, the time complexity reduces to $\mathcal{O}(vdn)$ for non-degenerate polyhedra. When including degenerate cases the complexity grows to $\mathcal{O}\left( dn(n-d){n-2\choose m-1} \right)$. However, for unbounded polyhedra the complexity becomes NP-hard.\\
+Discussing the complexity in more detail, we assume a polyhedron $G\subset\mathbb{R}^d$ with $v$ vertices, bounded by $n$ inequalities. As the dimensionality of $G$ is given by $d$, this is also the amount of necessary non-basic variables. Hence, the Simplex tableau consists of $(n+1)\times (d+1)$ entries added to the constant amount of pointers necessray for the recursion, which reduces to $\mathcal{O}(nd)$ in space complexity. \\
+Observing time complexity, the algorithm has to visit and check all $v$ vertices for the \textsc{reverse} property. As there are $|B|\cdot|N|$ indices pairs for  possible neighbours, we have to repeat the search and revert check $vdn$ times. Hence, the time complexity reduces to $\mathcal{O}(vdn)$ for non-degenerate polyhedra. When including degenerate cases the complexity grows to $\mathcal{O}\left( dn(n+d){n-2\choose d} \right)$. However, for unbounded polyhedra the complexity becomes NP-hard. These bounds also hold for the FEP, given its duality to the VEP.\\
 
-Up until now we have omitted 
+Up until now we treated polyhedra and arrangements similarly, but with respect to time complexity their performance diverges. For a simple, i.e. a non-degenerate, arrangement with $n$ hyperplanes in $\mathbb{R}^d$ and $v$ vertices, we have a complexity of $\mathcal{O}(n^2dv)$. This result corresponds to the degenerate complexity for polyhedra with $v$ substituting ${n\choose d}$, and thus the number of distinct/non-degenerate states checked by \textsc{lex\_min}. We are not able to reduce the complexity further due to the lacking convexity and the multiple possible multiple cells of the given arrangement.
 
 \section{Future Work based on this }
-%body
+
+this paper presented not only an approach to three important problems in computational geometry, but also sparked research in many different directions. First, its so fundamental yet so elegant, taht is cited by nearly every book on polytopes and computational geometry. Second, the authors themselves built various publications on top, as they investigated the reverse search technique (Avis, Fukuda 1996)\cite{AvisReverseSearch} and double description methods (Fukuda, 1995)\cite{FukudaDoubleDescr}. These paper in return were cited 500 times each. \\
+ 
+
 
 \newpage
 
@@ -687,7 +687,15 @@ Up until now we have omitted
 	\bibitem{Motzkin}
 	T. S. Motzkin, H. Raiffa, G. L. Thompson, and R. M. Thrall, The Double Description Method,
 	Annals of Mathematical Studies, vol. 8, Princeton University Press, Princeton, N J, 1953.
+	\bibitem{AvisReverseSearch}
+	Avis, D., \& Fukuda, K. (1996). Reverse search for enumeration. Discrete Applied Mathematics, 65(1–3), 21–46. https://doi.org/10.1016/0166-218x(95)00026-n
+	\bibitem{FukudaDoubleDescr}
+	Fukuda and Prodon, Double Description Method revisited,  Franco-Japanese and Franco-Chinese Conference on Combinatorics and Computer Science, 1995
 \end{thebibliography}
+
+\newpage
+
+\section{Appendix}
 
 
 \end{document}
