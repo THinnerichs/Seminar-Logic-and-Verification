@@ -265,7 +265,7 @@ Furthermore, we are able to add a statement about the \textit{standard form} of 
 		\label{standardform}
 		z = f(x) = c^T x \rightarrow min \hspace{1cm} with\ x \in G:=\{x \in \mathbb{R}^n: Ax \geq b, x \geq 0\}
 	\end{equation}
-	with $A\in \mathbb{R}^{m\times n}$, $b\in\mathbb{R}^m$, $x\geq 0$. Additionally, let $rank(A)=m$ and $m< n$.\medskip
+	with $A\in \mathbb{R}^{m\times n}$, $b\in\mathbb{R}^m$, $x\geq 0$.	Additionally, let $rank(A)=m$ and $m< n$.\\
 	We call this form the \textit{standard form}.
 \end{lemma}
 The finite dimensionality is expressed with regard to the amount of variables, and thus the width of both objective function and coefficient matrix. \medskip
@@ -523,12 +523,12 @@ Eventually, we want to briefly discuss the power and the significance of this ve
 
 For bounded, non-\textit{degenerate} polyhedra, the original Simplex algorithm terminates and returns the optimal solution in polynomial time (on average). However, a polyhedron is not always non-degenerate as we will see in the following definition.
 
-\begin{mydef}(Degeneracy)\medskip
+\begin{mydef}(Degeneracy)\medskip 
 	If a vertex $v$ of $G$ defined by $A,b$ with $m=rank(A)$ solves more than $m$ inequalities as equations, then we will call this vertex \emph{degenerate}. \medskip
 	If a polyhedron has at least one degenerate vertex, then we will call this polyhedron \emph{degenerate}.
 \end{mydef}
 
-The Simplex method struggles when multiple vertices have the same objective value, while also being mutually adjacent. This is the case for degenerate vertices, as we have to interpret one of the basic variables as $0$, too. Thus, multiple states of our Simplex tableau refer to the same vertex, which could lead the algorithm to circle along the basic solutions. However, we can simply introduce an order among the vertices, stating in which sequence they will be chosen, e.g. a lexicographic order of their corresponding basic indices set. Thus, the Simplex algorithm becomes deterministic and terminates in every case.\medskip
+The Simplex method struggles when multiple basic solutions have the same objective value, while also being mutually adjacent. This is the case for degenerate vertices, as we have to interpret one of the basic variables as $0$, too. Thus, multiple states of our Simplex tableau refer to the same vertex, which could lead the algorithm to circle along the basic solutions. However, we can simply introduce an order among the vertices, stating in which sequence they will be chosen, e.g. a lexicographic order of their corresponding basic indices set. This new updating rule is called Bland's rule. Thus, with Bland's rule for pivot selection the Simplex algorithm becomes deterministic and terminates in every case.\medskip
 
 The implications of Bland's rule are discussed in Theorem \ref{Bland}.
 
@@ -537,7 +537,7 @@ The implications of Bland's rule are discussed in Theorem \ref{Bland}.
 	If we use Bland's rule for choosing the Pivot element for the Simplex step, then these updated Simplex steps will always yield a primal feasible basic solution. If Bland's rule is not applicable, then the basic solution is dual feasible and thus optimal.
 \end{theorem}
 
-On the other hand, there are much simpler ways to choose a Pivot element. The \textit{Criss-Cross rule} is choosing its row in the Simplex tableau, not by minimizing over the quotients as in \ref{Pivotsel}, but by choosing purely combinatorial. Thus, the updated Simplex tableau does not always maximize the difference of objective function, contrary to e.g. Bland's rule. 
+On the other hand, there are much simpler ways to choose a Pivot element. The \textit{Criss-Cross rule} is choosing its row in the Simplex tableau, not by minimizing over the quotients as in \ref{Pivotsel}, but by choosing purely combinatorialy. Thus, the updated Simplex tableau does not always maximize the difference of objective value, contrary to e.g. Bland's rule. 
 
 \begin{lemma}
 	\label{theo4}
@@ -561,13 +561,14 @@ The degeneracy of the optimal vertex however, cannot be immanently solved by nei
 
 \section{The Avis-Fukuda Algorithm}
 
-While these properties of LPs are fairly interesting, how does this help to eventually solve the VEP? Given a polyhedron $G$,  we introduce a random but fixed linear objective function $f(x):=c^Tx$ with $c^T\neq 0$, that defines any gradient along $G$. This leads to the previously mentioned spanning tree of $G$. \medskip
+While these properties of LPs are fairly interesting, how does this help to eventually solve the VEP? Given a polyhedron $G$,  we introduce a random but fixed linear objective function $f(x):=c^Tx$ with $c^T\neq 0$, that defines any gradient along $G$. This leads to the previously mentioned spanning tree of the vertices of $G$. \medskip
 
 It was the idea of Avis and Fukuda, published in the discussed paper, to start a reverse search over this spanning tree to find all vertices, starting from the optimal node. But, the Simplex algorithm only teaches us how to move along the gradient of $f$, and thus only gives as a unidirectional, directed path from any vertex $v$ to the root vertex, but not vice versa. \medskip
 
 \begin{mydef}
 	Let $v$ be a basic feasible solution (vertex).\medskip
-	Let $(\tau, \sigma)$ be the pivot obtained by applying \emph{any} rule to $v$ yielding $v'$.  \medskip
+	
+	Let $(\tau, \sigma)$ be the pivot obtained by applying \emph{any} rule to $v$ yielding $v'$.
 	We call $(\sigma, \tau)$ the \textit{reverse pivot} for $v'$.
 \end{mydef}
 
@@ -597,7 +598,7 @@ As we can only determine successors and not predecessors of vertices, this probl
 
 \end{mydef}
 
-As distinguishing feasible and infeasible tableaus or states is simple, we can easily assemble all feasible neighbours of $v$. We now formulate the above informal description of the procedure into the following algorithm.
+As distinguishing feasible and infeasible tableaus or states is simple, we can easily assemble all feasible neighbours of $v$. We now formulate the above informal description of the procedure in the following algorithm.
 
 \begin{algorithm}[H]
 	\caption{Reverse-search the spanning tree}
@@ -622,24 +623,24 @@ As distinguishing feasible and infeasible tableaus or states is simple, we can e
 
 The function \textsc{reverse}$(B,N,P,i,j)$ checks  whether $(i,j)$ is a reverse pivot of the state given by $B$. Additionally, we introduce the method \textsc{lex\_min}$(B,N,P)$, which is helpful for the reduction of degenerate vertices. This method checks the current basic solution if it is the minimum with respect to a predefined, lexicographic ordering, among all basic solutions of the current vertex. As the algorithm will visit every basic solution, we thus ensure that the vertex gets printed only once. \textsc{Select-pivot} hereby corresponds to any of the previously mentioned pivoting rules.\medskip 
 
-Starting at the root node, the algorithm checks all any of the neighbour vertices for existence of reverse pivots. If that is the case, the current node gets printed. We then start a recursive search for more vertices from the previously discovered node. While in this algorithm formulation, find it to be a depth first search, any search technique is viable. If the algorithm has finished the \textsc{search} sub-procedure, it jumps back to its successor with a simple pivot step. Starting from any first feasible solution, found by usage of the first phase of the Simplex method, we can always find the initial, optimal, root vertex applying the Bland's rule iteratively.\medskip
+Starting at the root node, the algorithm checks all adjacent vertices for existence of reverse pivots. If that is the case, the current node gets printed. We then start a recursive search for more vertices from the previously discovered node. While in this algorithm formulation we perform a depth first search, any search technique is viable. If the algorithm has finished the \textsc{search} sub-procedure, it jumps back to its successor with a simple pivoting step. Starting from any first feasible solution, found by usage of the first phase of the Simplex method, we can always find the initial, optimal, root vertex applying the Bland's rule iteratively.\medskip
 
 Eventually, we reached our goal of finding all vertices for our example problem, and are thus free to cook delicious dishes. 
 
 \subsection{Complexity and other properties}
-The algorithm gains the following properties derived from the previously described sub-procedures. At first the method does not need any additional storage beyond the input data, as all calculations can be run on the input Simplex tableau. Second, by construction the output will be free of duplicates. Every basic solution will be visited multiple times, but due to the spanning tree and handling of degenerate cases, only output once. Third, the algorithm is extremely simple, requires no complicated data structures, as everything can be computed on the tableau itself. Fourth, the procedure immanently handles all degenerate cases for both optimal and regular tableaus. Regarding time complexity, reverse search is dependent on the amount of vertices, and thus output sensitive for non-degenerate cases.
+The algorithm gains the following properties derived from the previously described sub-procedures. At first the method does not need any additional storage beyond the input data, as all calculations can be run on the input Simplex tableau. Second, by construction the output will be free of duplicates. Every basic solution will be visited multiple times, but due to the spanning tree and handling of degenerate cases, only output once. Third, the algorithm is extremely simple and requires no complicated data structures, as everything can be computed on the tableau itself. Fourth, the procedure immanently handles all degenerate cases for both optimal and regular tableaus. Regarding time complexity, reverse search is dependent on the amount of vertices, and thus output sensitive for non-degenerate polyhedra and arrangements.
 Eventually, given by its recursive search nature and the independence of the subtree searches, the method can be parallelized efficiently and easily.\medskip
 
-Discussing the complexity in more detail, we assume a polyhedron $G\subset\mathbb{R}^d$ with $v$ vertices, bounded by $n$ inequalities. As the dimensionality of $G$ is given by $d$, this is also the amount of necessary non-basic variables. Hence, the Simplex tableau consists of $(n+1)\times (d+1)$ entries added to the constant amount of pointers necessray for the recursion, which reduces to $\mathcal{O}(nd)$ in space complexity. \medskip
+Discussing the complexity in more detail, we assume a polyhedron $G\subset\mathbb{R}^d$ with $v$ vertices, bounded by $n$ inequalities. As the dimensionality of $G$ is given by $d$, this is also the amount of necessary non-basic variables. Hence, the Simplex tableau consists of $(n+1)\times (d+1)$ entries added to the constant amount of pointers necessary for the recursion, which reduces to $\mathcal{O}(nd)$ in space complexity. This holds for non-degenerate arrangements, too.\medskip
 Observing time complexity, the algorithm has to visit and check all $v$ vertices for the \textsc{reverse} property. As there are $|B|\cdot|N|$ indices pairs for  possible neighbours, we have to repeat the search and revert check $vdn$ times. Hence, the time complexity reduces to $\mathcal{O}(vdn)$ for non-degenerate polyhedra. When including degenerate cases the complexity grows to $\mathcal{O}\left( dn(n+d){n-2\choose d} \right)$. However, for unbounded polyhedra the complexity becomes NP-hard. These bounds also hold for the FEP, given its duality to the VEP.\medskip
 
-Up until now we treated polyhedra and arrangements similarly, but with respect to time complexity their performance diverges. For a simple, i.e. a non-degenerate, arrangement with $n$ hyperplanes in $\mathbb{R}^d$ and $v$ vertices, we have a complexity of $\mathcal{O}(n^2dv)$. This result corresponds to the degenerate complexity for polyhedra with $v$ substituting ${n\choose d}$, and thus the number of distinct/non-degenerate states checked by \textsc{lex\_min}. We are not able to reduce the complexity further due to the lacking convexity and the multiple possible multiple cells of the given arrangement.
+Up until now, we treated polyhedra and arrangements similarly, but with respect to time complexity their performance diverges. For a simple, i.e. a non-degenerate, arrangement with $n$ hyperplanes in $\mathbb{R}^d$ and $v$ vertices, we have a complexity of $\mathcal{O}(n^2dv)$. This result corresponds to the degenerate complexity for polyhedra with $v$ substituting ${n\choose d}$, and thus the number of distinct/non-degenerate states checked by \textsc{lex\_min}. We are not able to reduce the complexity further due to the lacking convexity and the multiple possible multiple cells of the given arrangement.
 
 \section{Aftereffects of this publication}
 
-this paper presented not only an approach to three important problems in computational geometry, but also sparked research in many different directions. First, its so fundamental yet so elegant, taht is cited by nearly every book on polyhedra and computational geometry. Second, the authors themselves built various publications on top, as they investigated the reverse search technique (Avis, Fukuda 1996)\cite{AvisReverseSearch} and double description methods (Fukuda, 1995)\cite{FukudaDoubleDescr}. These paper in return were cited 500 times each. \medskip
+this paper presented not only an approach to three important problems in computational geometry, but also sparked research in many different directions. First, its so fundamental yet so elegant, that it is cited by nearly every book on polyhedra and computational geometry. Second, the authors themselves wrote numerous publications following up this work, as they investigated the reverse search technique (Avis, Fukuda 1996)\cite{AvisReverseSearch} and double description methods (Fukuda, 1995)\cite{FukudaDoubleDescr} in more detail. These publications in return were cited 500 times each. \medskip
  
-As Avis and Fukuda's procedure still remains one of the fastest and most used algorithms for solving VEPs, it was utilized in many different fields and occasions. Adding its immanent ability to be parallelized efficiently, it is implemented in any relevant computational geometry library. Only recently, the VEP and thus the algorithm has experienced an upswing with respect to the field of machine learning, for example in enumerating linear regions.\medskip
+As Avis and Fukuda's algorithm still remains one of the fastest and most used algorithms for solving VEPs, it was utilized in many different fields and occasions. Adding its immanent ability to be parallelized efficiently, it is implemented in any relevant computational geometry library. Only recently, the VEP and thus the algorithm has experienced an upswing with respect to the field of machine learning, for example in enumerating linear regions.\medskip
 
 As we can see the VEP and the Avis-Fukuda algorithm have been and still are inseparably connected. We thus think that this is one of the most influential papers in computational geometry.
 
