@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2020.9.10)  30 SEP 2020 12:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2020.9.10)  30 SEP 2020 18:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -692,6 +692,9 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \ALC@tlm=\skip56
 \algorithmicindent=\skip57
 )
+(/usr/share/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
 \c@mydef=\count302
 \c@example=\count303
 \c@lemma=\count304
@@ -722,24 +725,24 @@ File: l3backend-pdfmode.def 2020-06-03 L3 backend support: PDF mode
 LaTeX Warning: Label `alg:seq' multiply defined.
 
 )
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
 \AtBeginShipoutBox=\box62
-Package hyperref Info: Link coloring OFF on input line 70.
+Package hyperref Info: Link coloring OFF on input line 71.
  (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -751,9 +754,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count309
 )
-LaTeX Info: Redefining \ref on input line 70.
-LaTeX Info: Redefining \pageref on input line 70.
-LaTeX Info: Redefining \nameref on input line 70.
+LaTeX Info: Redefining \ref on input line 71.
+LaTeX Info: Redefining \pageref on input line 71.
+LaTeX Info: Redefining \nameref on input line 71.
 
 (./summary.out) (./summary.out)
 \@outlinefile=\write4
@@ -819,14 +822,14 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.17} into 
 your preamble.
- on input line 70.
+ on input line 71.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 88.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 89.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 88.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 89.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -836,341 +839,183 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./summary.toc)
 \tf@toc=\write5
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 98--99
-
- []
-
-
-Overfull \hbox (5.29526pt too wide) in paragraph at lines 100--101
+Overfull \hbox (5.29526pt too wide) in paragraph at lines 101--102
 \OT1/cmr/m/n/10.95 computational geometry and has applications in fields such a
 s computational biology and quantum
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 102--103
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 109--111
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
-
- []
-
+<Convex_combination_illustration.svg.png, id=107, 220.825pt x 278.03876pt>
+File: Convex_combination_illustration.svg.png Graphic file (type png)
+<use Convex_combination_illustration.svg.png>
+Package pdftex.def Info: Convex_combination_illustration.svg.png  used on input
+ line 147.
+(pdftex.def)             Requested size: 136.57462pt x 171.96648pt.
 [3]
-Overfull \hbox (5.07939pt too wide) in paragraph at lines 144--145
-[]\OT1/cmr/m/n/10.95 As a polytope is in fact a set of points, too, this also a
-pplies to the polyhedra and arrangements. 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
-
- []
-
-
-Overfull \hbox (3.28745pt too wide) in paragraph at lines 188--188
+Overfull \hbox (3.28745pt too wide) in paragraph at lines 193--193
 []\OT1/cmr/m/it/10.95 Var| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
 []\OT1/cmr/m/it/10.95 Energy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
 []\OT1/cmr/m/it/10.95 Protein
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
 []\OT1/cmr/m/it/10.95 Calcium
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
 []\OT1/cmr/m/it/10.95 Price
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
 \OT1/cmr/m/it/10.95 (Euro
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--198
-
+Overfull \hbox (40.00925pt too wide) in paragraph at lines 184--203
+\OT1/cmr/m/it/10.95 following table: []
  []
 
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 205--206
+[4pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+has been already used, duplicate ignored
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 207--208
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--214
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 224--225
-
- []
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 226--227
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--237
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 243--244
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 259--260
-
- []
-
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 308--309
-
- []
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 340--341
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 342--343
-
- []
-
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.203 	
+        <./Convex_combination_illustration.svg.png>] [5] [6] [7]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 351.
-
-Underfull \hbox (badness 10000) in paragraph at lines 365--366
-
- []
-
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 433--435
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 436--437
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 491--492
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 493--494
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 555--556
-
- []
-
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 564--565
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 591--592
-
- []
-
-[11pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
+put line 364.
+ [8] [9]
+[10pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.592 
-      ]
-Underfull \hbox (badness 10000) in paragraph at lines 597--598
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 599--600
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 607--608
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 609--610
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 613--614
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 615--617
-
- []
-
+l.541 
+      ] [11]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 628.
-
-[12]
-Underfull \hbox (badness 10000) in paragraph at lines 656--657
-
- []
+(Font)              using `OT1/cmr/m/sc' instead on input line 595.
 
 
-Overfull \hbox (1.78716pt too wide) in paragraph at lines 658--659
+Overfull \hbox (1.78716pt too wide) in paragraph at lines 625--626
 \OT1/cmr/m/n/10.95 search for more vertices from the previously discovered node
 . While in this algorithm formulation,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 658--659
-
- []
-
-
-Overfull \hbox (7.12024pt too wide) in paragraph at lines 663--665
+Overfull \hbox (7.12024pt too wide) in paragraph at lines 630--632
 \OT1/cmr/m/n/10.95 The algorithm gains the following properties derived from th
 e previously described sub-procedures.
  []
 
 
-Overfull \hbox (1.31067pt too wide) in paragraph at lines 663--665
+Overfull \hbox (1.31067pt too wide) in paragraph at lines 630--632
 \OT1/cmr/m/n/10.95 At first the method does not need any additional storage bey
 ond the input data, as all calculations
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 663--665
-
- []
-
+[12]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 667.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 666--668
-
- []
+(amsmath)                 on input line 634.
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 673--674
-
- []
-
-[14]
-Underfull \hbox (badness 1173) in paragraph at lines 691--692
+Underfull \hbox (badness 1173) in paragraph at lines 661--662
 []\OT1/cmr/m/n/10.95 Avis, D., & Fukuda, K. (1996). Reverse search for enumerat
 ion. Discrete Applied
  []
 
-[15] [16]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 701.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 701.
+[14]
+<../presentation/allMeals2.png, id=249, 942.52126pt x 654.445pt>
+File: ../presentation/allMeals2.png Graphic file (type png)
+<use ../presentation/allMeals2.png>
+Package pdftex.def Info: ../presentation/allMeals2.png  used on input line 675.
+
+(pdftex.def)             Requested size: 273.14923pt x 189.66435pt.
+<../presentation/Polytope_tree.png, id=250, 597.23125pt x 401.5pt>
+File: ../presentation/Polytope_tree.png Graphic file (type png)
+<use ../presentation/Polytope_tree.png>
+Package pdftex.def Info: ../presentation/Polytope_tree.png  used on input line 
+680.
+(pdftex.def)             Requested size: 364.19667pt x 244.84111pt.
+ [15pdfTeX warning (ext4): destination with the same identifier (name{figure.3}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.715 \end{quotation}
+                     pdfTeX warning (ext4): destination with the same identifie
+r (name{figure.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.715 \end{quotation}
+                      <../presentation/allMeals2.png> <../presentation/Polytope
+_tree.png>]
+Overfull \hbox (18.79669pt too wide) in paragraph at lines 720--726
+[][]| 
+ []
+
+
+Overfull \hbox (7.85pt too wide) in paragraph at lines 719--734
+[][] 
+ []
+
+[16]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 772.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 772.
  (./summary.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 701.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 701.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 772.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 772.
 Package rerunfilecheck Info: File `summary.out' has not changed.
-(rerunfilecheck)             Checksum: 92052208527B8325D6B39C5C9E1A1F85;1399.
+(rerunfilecheck)             Checksum: E7AB55748D1F21250D7515CC9772D48F;1255.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 701.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 772.
  ) 
 Here is how much of TeX's memory you used:
- 28492 strings out of 480478
- 673355 string characters out of 5905959
- 1089770 words of memory out of 5000000
- 43894 multiletter control sequences out of 15000+600000
+ 28547 strings out of 480478
+ 674563 string characters out of 5905959
+ 1087770 words of memory out of 5000000
+ 43941 multiletter control sequences out of 15000+600000
  546223 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,16n,98p,821b,1188s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
-, replaced by a fixed one
-
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
-usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
-fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
-.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/shar
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-sup
-er/sfrm1095.pfb>
-Output written on summary.pdf (16 pages, 279317 bytes).
+ 63i,18n,98p,821b,1188s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
+.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/shar
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/pu
+blic/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-s
+uper/sfrm1095.pfb>
+Output written on summary.pdf (16 pages, 365676 bytes).
 PDF statistics:
- 356 PDF objects out of 1000 (max. 8388607)
- 314 compressed objects within 4 object streams
- 99 named destinations out of 1000 (max. 500000)
- 165 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 354 PDF objects out of 1000 (max. 8388607)
+ 306 compressed objects within 4 object streams
+ 98 named destinations out of 1000 (max. 500000)
+ 164 words of extra memory for PDF output out of 10000 (max. 10000000)
 
